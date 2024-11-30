@@ -8,9 +8,6 @@
 Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about technology. I love exploring various programming languages and tools to build exciting projects.
 </p>
 
-<p>
-- I'm currently working on <a href="https://github.com/SoumyadipYT-OSS/.NET-MAUI-Pages">Webdrop</a> and <a href="https://github.com/SoumyadipYT-OSS/statsvlr">StatsVLR</a>.
-</p>
 
 <img align="center" width="400" src="https://github-readme-stats.vercel.app/api?username=SoumyadipYT-OSS&theme=transparent&show_icons=true&hide_border=true&show=reviews&hide_title=true&include_all_commits=true" />
 
