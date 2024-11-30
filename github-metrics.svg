@@ -43,14 +43,14 @@
   <text x="5%" y="10%" dominant-baseline="middle" text-anchor="start" font-family="Arial" font-size="24" class="horizontal-flow">GitHub Metrics</text>
   <text x="50%" y="10%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="36" class="glow-text">Year: 2023</text>
   <g transform="translate(50, 80)">
-    <rect width="900" height="400" fill="rgba(112, 128, 144, 0.5)" stroke="#ddd" stroke-width="1"/>
-    <circle cx="200" cy="200" r="50" fill="none" stroke="#4B0082" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
-    <text x="200" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#4B0082">Stars: 100</text>
-    <circle cx="400" cy="200" r="50" fill="none" stroke="#21CBF3" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
-    <text x="400" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#21CBF3">Forks: 50</text>
-    <circle cx="600" cy="200" r="50" fill="none" stroke="#FF5733" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
-    <text x="600" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FF5733">Issues: 10</text>
-    <circle cx="800" cy="200" r="50" fill="none" stroke="#FFC300" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
-    <text x="800" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FFC300">Git Pull: 5</text>
+    <rect width="900" height="400" fill="rgba(47, 79, 79, 0.5)" stroke="#ddd" stroke-width="1"/>
+    <circle cx="200" cy="200" r="50" fill="none" stroke="#FF4500" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
+    <text x="200" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FF4500">Stars: 100</text>
+    <circle cx="400" cy="200" r="50" fill="none" stroke="#32CD32" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
+    <text x="400" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#32CD32">Forks: 50</text>
+    <circle cx="600" cy="200" r="50" fill="none" stroke="#1E90FF" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
+    <text x="600" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#1E90FF">Issues: 10</text>
+    <circle cx="800" cy="200" r="50" fill="none" stroke="#FFD700" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
+    <text x="800" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FFD700">Git Pull: 5</text>
   </g>
 </svg>
