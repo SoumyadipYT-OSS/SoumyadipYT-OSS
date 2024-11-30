@@ -8,9 +8,9 @@
 
 <div align="center">
  
- 🔭 I’m currently working on **Education and App development**
+ 🔭 I’m currently working on **Education System and App development**
  
- 🌱 I’m currently learning **Azure, .NET, DSA**
+ 🌱 I’m currently learning **Azure, .NET Core, DSA**
 
 ⚡ Fun fact: Why don't programmers like nature? **It has too many bugs! 🐛😄**
 
