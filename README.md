@@ -22,7 +22,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
   <summary><h1>Skills</h1></summary>
 
   ### Programming Languages & Frameworks:
-  [![My Skills](https://skillicons.dev/icons?i=ASP.NET,.NETCore,C#,Python,C)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=ASP.NET,dotnet,C#,Python,C)](https://skillicons.dev)
 
   ### Development Tools & Environments:
   [![My Skills](https://skillicons.dev/icons?i=visualstudio,vscode,rider)](https://skillicons.dev)
@@ -46,7 +46,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
   [![My Skills](https://skillicons.dev/icons?i=photoshop,figma,illustrator)](https://skillicons.dev)
 
   ### Other Tools & Technologies:
-  [![My Skills](https://skillicons.dev/icons?i=npm,nuget,wpf)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=npm,nuget,wpf,linux)](https://skillicons.dev)
 
 </details>
 <hr>
