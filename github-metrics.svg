@@ -6,8 +6,8 @@
     </linearGradient>
     <style>
       @keyframes fillCircle {
-        0% { r: 0; }
-        100% { r: 50; }
+        0% { stroke-dasharray: 0 100; }
+        100% { stroke-dasharray: 50 100; }
       }
       .fill-circle {
         animation: fillCircle 2s ease-in-out forwards;
@@ -18,13 +18,13 @@
   <text x="50%" y="10%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="24" fill="#FFFFFF">GitHub Metrics</text>
   <g transform="translate(50, 50)">
     <rect width="700" height="300" fill="#fff" stroke="#ddd" stroke-width="1"/>
-    <circle cx="150" cy="150" r="0" fill="#4B0082" class="fill-circle"/>
-    <text x="150" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FFFFFF">Stars: 100</text>
-    <circle cx="300" cy="150" r="0" fill="#21CBF3" class="fill-circle"/>
-    <text x="300" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FFFFFF">Forks: 50</text>
-    <circle cx="450" cy="150" r="0" fill="#FF5733" class="fill-circle"/>
-    <text x="450" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FFFFFF">Issues: 10</text>
-    <circle cx="600" cy="150" r="0" fill="#FFC300" class="fill-circle"/>
-    <text x="600" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FFFFFF">Pull Requests: 5</text>
+    <circle cx="150" cy="150" r="50" fill="none" stroke="#4B0082" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
+    <text x="150" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#4B0082">Stars: 100</text>
+    <circle cx="300" cy="150" r="50" fill="none" stroke="#21CBF3" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
+    <text x="300" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#21CBF3">Forks: 50</text>
+    <circle cx="450" cy="150" r="50" fill="none" stroke="#FF5733" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
+    <text x="450" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FF5733">Issues: 10</text>
+    <circle cx="600" cy="150" r="50" fill="none" stroke="#FFC300" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
+    <text x="600" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FFC300">Pull Requests: 5</text>
   </g>
 </svg>
