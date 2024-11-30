@@ -46,7 +46,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
   [![My Skills](https://skillicons.dev/icons?i=photoshop,figma,illustrator)](https://skillicons.dev)
 
   ### Other Tools & Technologies:
-  [![My Skills](https://skillicons.dev/icons?i=npm,nuget,wpf,linux)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=npm,linux)](https://skillicons.dev)
 
 </details>
 <hr>
