@@ -14,9 +14,9 @@
         100% { stroke-dasharray: 50 100; }
       }
       @keyframes glow {
-        0% { fill: #FFFFFF; text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700; }
-        50% { fill: #FFD700; text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700; }
-        100% { fill: #FFFFFF; text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FFD700, 0 0 20px #FFD700; }
+        0% { fill: #00BFFF; text-shadow: 0 0 5px #00BFFF, 0 0 10px #00BFFF, 0 0 15px #00BFFF, 0 0 20px #00BFFF; }
+        50% { fill: #1E90FF; text-shadow: 0 0 10px #1E90FF, 0 0 20px #1E90FF, 0 0 30px #1E90FF, 0 0 40px #1E90FF; }
+        100% { fill: #00BFFF; text-shadow: 0 0 5px #00BFFF, 0 0 10px #00BFFF, 0 0 15px #00BFFF, 0 0 20px #00BFFF; }
       }
       @keyframes horizontalFlow {
         0% { fill: url(#textGrad); }
