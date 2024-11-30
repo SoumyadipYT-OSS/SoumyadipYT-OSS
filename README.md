@@ -15,7 +15,7 @@
 ⚡ Fun fact: Why don't programmers like nature? **It has too many bugs! 🐛😄**
 
  </div>
-![GitHub profile views](https://komarev.com/ghpvc/?username=SoumyadipYT-OSS&&style=for-the-badge)
+![GitHub profile views](https://komarev.com/ghpvc/?username=SoumyadipYT-OSS&style=for-the-badge)
 
 <hr>
 
