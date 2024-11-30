@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500">
   <defs>
     <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:azure;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:lightpurple;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:white;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:lightgray;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:crystalblue;stop-opacity:1" />
@@ -42,7 +42,7 @@
   <rect width="100%" height="100%" fill="url(#grad1)"/>
   <text x="5%" y="10%" dominant-baseline="middle" text-anchor="start" font-family="Arial" font-size="24" class="horizontal-flow">GitHub Metrics</text>
   <text x="50%" y="10%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="36" class="glow-text">Year: 2023</text>
-  <g transform="translate(50, 75)">
+  <g transform="translate(50, 80)">
     <rect width="900" height="400" fill="rgba(112, 128, 144, 0.5)" stroke="#ddd" stroke-width="1"/>
     <circle cx="200" cy="200" r="50" fill="none" stroke="#4B0082" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
     <text x="200" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#4B0082">Stars: 100</text>
