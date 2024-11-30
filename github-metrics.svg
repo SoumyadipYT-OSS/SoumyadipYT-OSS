@@ -9,8 +9,16 @@
         0% { stroke-dasharray: 0 100; }
         100% { stroke-dasharray: 50 100; }
       }
+      @keyframes changeColor {
+        0% { fill: #FFFFFF; }
+        50% { fill: #FFD700; }
+        100% { fill: #FFFFFF; }
+      }
       .fill-circle {
-        animation: fillCircle 2s ease-in-out forwards;
+        animation: fillCircle 2s ease-in-out infinite;
+      }
+      .year-text {
+        animation: changeColor 2s ease-in-out infinite;
       }
     </style>
   </defs>
@@ -26,5 +34,6 @@
     <text x="450" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FF5733">Issues: 10</text>
     <circle cx="600" cy="150" r="50" fill="none" stroke="#FFC300" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
     <text x="600" y="150" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FFC300">Git Pull: 5</text>
+    <text x="50%" y="90%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="24" class="year-text">Year: 2024</text>
   </g>
 </svg>
