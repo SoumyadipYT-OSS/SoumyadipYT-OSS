@@ -52,9 +52,6 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 
   ### API Testing
   [![My Skills](https://skillicons.dev/icons?i=postman)](https://skillicons.dev)
-  
-  ### Social Media & Communication:
-  [![My Skills](https://skillicons.dev/icons?i=discord,twitter,linkedIn)](https://skillicons.dev)
 
   ### Design & Graphics:
   [![My Skills](https://skillicons.dev/icons?i=photoshop,figma,illustrator)](https://skillicons.dev)
