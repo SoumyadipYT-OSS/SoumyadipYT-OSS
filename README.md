@@ -22,7 +22,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
   <summary><h1>Skills</h1></summary>
 
   ### Programming Languages & Frameworks:
-  [![My Skills](https://skillicons.dev/icons?i=asp,dotnet,c#,python,c)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=asp,dotnet,cs,py,c)](https://skillicons.dev)
 
   ### Development Tools & Environments:
   [![My Skills](https://skillicons.dev/icons?i=visualstudio,vscode,rider)](https://skillicons.dev)
@@ -34,11 +34,14 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
   [![My Skills](https://skillicons.dev/icons?i=azure,gcp)](https://skillicons.dev)
 
   ### Databases & Storage:
-  [![My Skills](https://skillicons.dev/icons?i=sqlite,oracledb,mongodb)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=sqlite,sql,mysql,mongodb)](https://skillicons.dev)
 
   ### Frontend Development:
   [![My Skills](https://skillicons.dev/icons?i=tailwind,sass,bootstrap)](https://skillicons.dev)
 
+  ### API Testing
+  [![My Skills](https://slillicons.dev/icons?i=postman)](https://skillicons.dev)
+  
   ### Social Media & Communication:
   [![My Skills](https://skillicons.dev/icons?i=discord,twitter,linkedIn)](https://skillicons.dev)
 
