@@ -10,7 +10,7 @@
       <stop offset="50%" style="stop-color:titanium;stop-opacity:1" />
       <stop offset="100%" style="stop-color:white;stop-opacity:0.2" />
       <animate attributeName="x1" from="0%" to="100%" dur="3s" repeatCount="indefinite" />
-      <animate attributeName="x2" from="0%" to="100%" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="x2" from="20%" to="200%" dur="3s" repeatCount="indefinite" />
     </linearGradient>
     <style>
       @keyframes fillCircle {
