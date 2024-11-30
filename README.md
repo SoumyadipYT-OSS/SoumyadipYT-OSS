@@ -34,7 +34,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
   [![My Skills](https://skillicons.dev/icons?i=azure,gcp)](https://skillicons.dev)
 
   ### Databases & Storage:
-  [![My Skills](https://skillicons.dev/icons?i=sqlite,oracle,mongodb)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=sqlite,oracledb,mongodb)](https://skillicons.dev)
 
   ### Frontend Development:
   [![My Skills](https://skillicons.dev/icons?i=tailwind,sass,bootstrap)](https://skillicons.dev)
