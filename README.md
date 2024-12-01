@@ -13,7 +13,7 @@
  
  🌱 I’m currently learning **Azure, .NET Core, DSA**
 
-⚡ Fun fact: Why don't programmers like nature? **It has too many bugs! 🐛😄**
+⚡ Fun fact: Why do Java developer wear glasses? **Because they don't know see sharp! 🐛😄**
 
  </div>
 
