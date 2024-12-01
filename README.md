@@ -31,7 +31,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 ![SoumyadipYT-OSS's Streak](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=flag-india&hide_border=false) 
 [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) 
 
-![Isometric Commit Calendar](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/metrics.plugin.isocalendar.fullyear.svg)
+![Isometric Commit Calendar](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/metrics.plugin.isocalendar.svg)
 <hr>
 
 ![Metrics](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/github-metrics.svg)
