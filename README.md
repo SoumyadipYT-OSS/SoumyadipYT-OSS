@@ -31,7 +31,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 | [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | ![Metrics](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/github-metrics.svg) |
 | ---------------- | ----------------- |
 
-| ![SoumyadipYT-OSS's Streak](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=flag-india&hide_border=false) |  |
+| ![SoumyadipYT-OSS's Streak](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=flag-india&hide_border=false) | ![](https://github-trophies.vercel.app/?username=SoumyadipYT-OSS&theme=flat&no-frame=false&no-bg=true&margin-w=4) |
 | ---------------- | ------------------ |
 
 <p align="center" >
