@@ -13,7 +13,7 @@
  
  🌱 I’m currently learning **Azure, .NET Core, DSA**
 
-⚡ Fun fact: Why do Java developer wear glasses? **Because they don't know see sharp! 🐛😄**
+⚡ Fun fact: Why programmers use dark theme in IDE? **Because ligth theme attracts bugs on the screen! 🐛😄**
 
  </div>
 
