@@ -38,6 +38,13 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 
 <hr>
 
+<p align="center" >
+	<picture>
+	  <source media="(prefers-color-scheme: dark)"  srcset="https://raw.githubusercontent.com/<SoumyadipYT-OSS>/<SoumyadipYT-OSS>/output-3d-contrib/night.svg" />
+	  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/<SoumyadipYT-OSS>/<SoumyadipYT-OSS>/output-3d-contrib/day.svg" />
+	  <img alt="github profile contributions chart"    src="https://raw.githubusercontent.com/<SoumyadipYT-OSS>/<SoumyadipYT-OSS>/output-3d-contrib/day.svg" />
+	</picture>
+</p>
 
 <details>
   <summary><h1>Skills</h1></summary>
