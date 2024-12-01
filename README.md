@@ -23,7 +23,8 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 </p>
 
 
-<img align="center" width="400" src="https://github-readme-stats.vercel.app/api?username=SoumyadipYT-OSS&theme=transparent&show_icons=true&hide_border=true&show=reviews&hide_title=true&include_all_commits=true" />
+| <a href="https://github.com/SoumyadipYT-OSS/github-readme-stats"><img align="center" src="https://github-readme-stats.vercel.app/api?username=SoumyadipYT-OSS&show_icons=true&include_all_commits=true&theme=buefy&hide_border=true" alt="Soumyadip's github stats" /></a> | <a href="https://github.com/SoumyadipYT-OSS/github-readme-stats"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=SoumyadipYT-OSS&layout=compact&theme=buefy&hide_border=true" /></a> |
+| ------------- | ------------- |
 
 <hr>
 
