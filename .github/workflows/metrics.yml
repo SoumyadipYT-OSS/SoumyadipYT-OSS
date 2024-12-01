@@ -19,3 +19,5 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           template: classic
           user: SoumyadipYT-OSS # Replace with your GitHub username
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
