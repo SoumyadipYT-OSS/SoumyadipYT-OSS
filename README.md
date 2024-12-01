@@ -44,11 +44,6 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 
 <hr>
 
-# 📊GitHub Stats :
-![](https://github-readme-stats.vercel.app/api?username=SoumyadipYT-OSS&theme=radical&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=radical&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=SoumyadipYT-OSS&theme=radical&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
-
 ## 🏆GitHub Trophies
 ![](https://github-trophies.vercel.app/?username=SoumyadipYT-OSS&theme=flat&no-frame=false&no-bg=true&margin-w=4)
 
