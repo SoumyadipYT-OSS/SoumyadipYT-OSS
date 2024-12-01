@@ -31,12 +31,8 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 | [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | ![Metrics](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/github-metrics.svg) |
 | ---------------- | ----------------- |
 
-| ![SoumyadipYT-OSS's Streak](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=flag-india&hide_border=false) | ![Isometric Commit Calendar](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/metrics.plugin.isocalendar.svg) |
+| ![SoumyadipYT-OSS's Streak](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=flag-india&hide_border=false) |  |
 | ---------------- | ------------------ |
-
-![](./profile-3d-contrib/profile-green-animate.svg)
-
-<hr>
 
 <p align="center" >
 	<picture>
@@ -45,6 +41,8 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 	  <img alt="github profile contributions chart"    src="https://raw.githubusercontent.com/SoumyadipYT-OSS/SoumyadipYT-OSS/output-3d-contrib/day.svg" />
 	</picture>
 </p>
+
+<hr>
 
 <details>
   <summary><h1>Skills</h1></summary>
