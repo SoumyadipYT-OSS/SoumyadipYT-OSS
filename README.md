@@ -39,7 +39,6 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 	</picture>
 </p>
 
-<hr>
 
 ## 🏆GitHub Trophies
 ![](https://github-trophies.vercel.app/?username=SoumyadipYT-OSS&theme=flat&no-frame=false&no-bg=true&margin-w=4)
