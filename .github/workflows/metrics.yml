@@ -20,4 +20,4 @@ jobs:
           template: classic
           user: SoumyadipYT-OSS # Replace with your GitHub username
           plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
+          plugin_isocalendar_duration: full-year # You can change this to half-year if you prefer
