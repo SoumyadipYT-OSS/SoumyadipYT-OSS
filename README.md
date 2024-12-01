@@ -33,8 +33,6 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 
 <hr>
 
-[![Metrics](https://raw.githubusercontent.com/SoumyadipYT-OSS/SoumyadipYT-OSS/main/github-metrics.svg)](https://metrics.lecoq.io/about/SoumyadipYT-OSS)
-
 ![Metrics](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/github-metrics.svg)
 
 
