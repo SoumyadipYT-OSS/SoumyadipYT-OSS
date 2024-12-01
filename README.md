@@ -13,7 +13,7 @@
  
  🌱 I’m currently learning **Azure, .NET Core, DSA**
 
-⚡ Fun fact: Why programmers use dark theme in IDE? **Because ligth theme attracts bugs on the screen! 🐛😄**
+⚡ Fun fact: Why programmers use dark theme in IDE? **Because light theme attracts bugs on the screen! 🐛😄**
 
  </div>
 
