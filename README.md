@@ -25,6 +25,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 
 | <a href="https://github.com/SoumyadipYT-OSS/github-readme-stats"><img align="center" src="https://github-readme-stats.vercel.app/api?username=SoumyadipYT-OSS&show_icons=true&include_all_commits=true&theme=buefy&hide_border=true" alt="Soumyadip's github stats" /></a> | <a href="https://github.com/SoumyadipYT-OSS/github-readme-stats"><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=SoumyadipYT-OSS&layout=compact&theme=buefy&hide_border=true" /></a> |
 | ------------- | ------------- |
+| **Year: 2023**| |
 
 <hr>
 
