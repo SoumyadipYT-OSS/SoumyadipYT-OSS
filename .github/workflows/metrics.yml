@@ -1,0 +1,21 @@
+name: Metrics
+
+on:
+  schedule: 
+    - cron: '0 0 * * *' # Runs every day at midnight
+  push:
+    branches:
+      - main # Change this to your default branch
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Metrics
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          template: classic
+          user: SoumyadipYT-OSS # Replace with your GitHub username
