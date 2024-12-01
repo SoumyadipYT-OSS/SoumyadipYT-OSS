@@ -43,7 +43,6 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 ## 🏆GitHub Trophies
 ![](https://github-trophies.vercel.app/?username=SoumyadipYT-OSS&theme=flat&no-frame=false&no-bg=true&margin-w=4)
 
----
 [![](https://visitcount.itsvg.in/api?id=SoumyadipYT-OSS&icon=0&color=0)](https://visitcount.itsvg.in)
 
 <hr>
