@@ -34,7 +34,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 | ![SoumyadipYT-OSS's Streak](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=flag-india&hide_border=false) | ![Isometric Commit Calendar](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/metrics.plugin.isocalendar.svg) |
 | ---------------- | ------------------ |
 
-![3D Contribution Calendar](./profile-3d-contrib/profile-green-animate.svg)
+![](./profile-3d-contrib/profile-green-animate.svg)
 
 <hr>
 
