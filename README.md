@@ -2,8 +2,6 @@
     <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=500&height=70&duration=3000&lines=Hi+There!+👋;+नमस्ते!+🙏;+I'm+Soumyadip+Majumder!;" />
 </h1>
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=SoumyadipYT-OSS&layout=compact&theme=buefy&hide_border=true&include_private=true)](https://github.com/SoumyadipYT-OSS/github-readme-stats)
-
 
 <h3 align="center">A passionate software developer from INDIA 🇮🇳</h3>
 
