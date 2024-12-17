@@ -1,0 +1,30 @@
+<svg width="500" height="70" viewBox="0 0 500 70" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .text {
+            font-family: 'Righteous', sans-serif;
+            font-size: 35px;
+            fill: url(#gradient);
+            animation: typing 5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
+    </style>
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#FF9933; stop-opacity:1" />
+            <stop offset="20%" style="stop-color:#878787; stop-opacity:1" />
+            <stop offset="40%" style="stop-color:#00008B; stop-opacity:1" />
+            <stop offset="60%" style="stop-color:#878787; stop-opacity:1" />
+            <stop offset="80%" style="stop-color:#00FF00; stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <text x="50%" y="50%" text-anchor="middle" class="text">Hi There! 👋 नमस्ते! 🙏 I'm Soumyadip Majumder!</text>
+</svg>
