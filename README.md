@@ -26,7 +26,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 |:--------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------:|
 | ✍️ Dev Quote ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light) | ![Metrics](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/github-metrics.svg) |
 
-| [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | [!Soumyadip's github streak](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=flag-india&hide_border=true) |
+| [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | ![GitHub Stats](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=flag-india&hide_border=true) |
 
 <hr>
 
