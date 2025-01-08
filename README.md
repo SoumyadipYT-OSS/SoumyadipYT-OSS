@@ -26,10 +26,11 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 |:--------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------:|
 | ✍️ Dev Quote ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light) | ![Metrics](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/github-metrics.svg) |
 
-| [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | ![GitHub Stats](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=flag-india&hide_border=true) |
+| [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | <!-- GithubStreak Goes here --> |
 
 <hr>
 
+<!--
 <p align="center" >
 	<picture>
 	  <source media="(prefers-color-scheme: dark)"  srcset="https://raw.githubusercontent.com/SoumyadipYT-OSS/SoumyadipYT-OSS/output-3d-contrib/night.svg" />
@@ -37,6 +38,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 	  <img alt="github profile contributions chart"    src="https://raw.githubusercontent.com/SoumyadipYT-OSS/SoumyadipYT-OSS/output-3d-contrib/day.svg" />
 	</picture>
 </p>
+-->
 
 
 ## 🏆GitHub Trophies
