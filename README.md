@@ -22,9 +22,9 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 </p>
 
 
-| ![SoumyadipYT-OSS's Stats](https://github-readme-stats.vercel.app/api?username=SoumyadipYT-OSS&theme=flag-india&show_icons=true&hide_border=false&count_private=true) | ![SoumyadipYT-OSS's Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=SoumyadipYT-OSS&theme=flag-india&show_icons=true&hide_border=false&layout=compact) |
+| ![SoumyadipYT-OSS's Stats](https://github-readme-stats.vercel.app/api?username=SoumyadipYT-OSS&theme=flag-india&show_icons=true&hide_border=false&count_private=true) | ![SoumyadipYT-OSS's Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=SoumyadipYT-OSS&theme=flag-india&show_icons=true&hide_border=false&layout=compact) | 
 |:--------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------:|
-| [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | <!-- GitHub Streaks goes here --> | ![GitHub Stats](https://github-readme-streak-stats.herokuapp.com/?user=SoumyadipYT-OSS&theme=default&hide_border=true)
+| [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | <!-- GitHub Streaks goes here -->  | 
 | ✍️ Dev Quote ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light) | ![Metrics](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/github-metrics.svg) |
 
 <hr>
@@ -36,6 +36,14 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 [![](https://visitcount.itsvg.in/api?id=SoumyadipYT-OSS&icon=0&color=0)](https://visitcount.itsvg.in)
 
 <hr>
+
+## 🌐 Socials:
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/https://linkedin.com/in/contactdev-soumyadipmajumder/) [![Medium](https://img.shields.io/badge/Medium-12100E?logo=medium&logoColor=white)](https://medium.com/@https://medium.com/@soumyadipmajumder.13055/) [![Stack Overflow](https://img.shields.io/badge/-Stackoverflow-FE7A16?logo=stack-overflow&logoColor=white)](https://stackoverflow.com/users/https://stackoverflow.com/users/22347866/) [![X](https://img.shields.io/badge/X-black.svg?logo=X&logoColor=white)](https://x.com/https://x.com/SoumyadipM37197/) 
+
+---
+[![](https://visitcount.itsvg.in/api?id=SoumyadipYT-OSS&icon=0&color=0)](https://visitcount.itsvg.in)
+
+<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
 
 <details>
   <summary><h1>Skills</h1></summary>
