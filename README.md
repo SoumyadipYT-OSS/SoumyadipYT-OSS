@@ -37,13 +37,6 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
 
 <hr>
 
-## 🌐 Socials:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/https://linkedin.com/in/contactdev-soumyadipmajumder) [![Medium](https://img.shields.io/badge/Medium-12100E?logo=medium&logoColor=white)](https://medium.com/@https://medium.com/@soumyadipmajumder.13055) [![Stack Overflow](https://img.shields.io/badge/-Stackoverflow-FE7A16?logo=stack-overflow&logoColor=white)](https://stackoverflow.com/users/https://stackoverflow.com/users/22347866) [![X](https://img.shields.io/badge/X-black.svg?logo=X&logoColor=white)](https://x.com/https://x.com/SoumyadipM37197) 
-
----
-[![](https://visitcount.itsvg.in/api?id=SoumyadipYT-OSS&icon=0&color=0)](https://visitcount.itsvg.in)
-
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
 
 <details>
   <summary><h1>Skills</h1></summary>
