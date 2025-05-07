@@ -1,39 +1,149 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="1000" height="500">
   <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:marble;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:darkorchid;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:darkgoldenrod;stop-opacity:1" />
+    <!-- Main Shiny Gradient Background with Unique Colors -->
+    <linearGradient id="mainBgGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2C003E">
+        <animate attributeName="stop-color" values="#2C003E;#44006F;#2C003E" dur="10s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="50%" stop-color="#7F00FF">
+        <animate attributeName="stop-color" values="#7F00FF;#B400FF;#7F00FF" dur="10s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="100%" stop-color="#1E90FF">
+        <animate attributeName="stop-color" values="#1E90FF;#00BFFF;#1E90FF" dur="10s" repeatCount="indefinite" />
+      </stop>
     </linearGradient>
-    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:purple;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:titanium;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:white;stop-opacity:0.2" />
-      <animate attributeName="x1" from="0%" to="100%" dur="3s" repeatCount="indefinite" />
-      <animate attributeName="x2" from="20%" to="200%" dur="3s" repeatCount="indefinite" />
-      <animate attributeName="x3" from="40%" to="200%" dur="4s" repeatCount="indefinite" />
+
+    <!-- Neon Glow Filter for Title with Animated Flood-Color -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feFlood result="flood" flood-color="#FF00FF">
+        <animate attributeName="flood-color" values="#FF00FF;#00FFFF;#FF00FF" dur="4s" repeatCount="indefinite" />
+      </feFlood>
+      <feComposite in="flood" in2="SourceAlpha" operator="in" result="mask"/>
+      <feGaussianBlur in="mask" stdDeviation="6" result="blurred"/>
+      <feMerge>
+        <feMergeNode in="blurred"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Gradients for Rotating Rings -->
+    <linearGradient id="ringGradient1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF5F6D"/>
+      <stop offset="100%" stop-color="#FFC371"/>
     </linearGradient>
+    <linearGradient id="ringGradient2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6DD5FA"/>
+      <stop offset="100%" stop-color="#2980B9"/>
+    </linearGradient>
+    <linearGradient id="ringGradient3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a8ff78"/>
+      <stop offset="100%" stop-color="#78ffd6"/>
+    </linearGradient>
+    <linearGradient id="ringGradient4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FCE38A"/>
+      <stop offset="100%" stop-color="#F38181"/>
+    </linearGradient>
+    
+    <!-- Inner Gauge Radial Gradient -->
+    <radialGradient id="innerGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.2)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+
+    <!-- CSS Animations -->
     <style>
-      @keyframes fillCircle {
-        0% { stroke-dasharray: 0 100; }
-        100% { stroke-dasharray: 50 100; }
+      /* Continuous Rotation */
+      @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
       }
-      .fill-circle {
-        animation: fillCircle 2s ease-in-out infinite;
+      .rotating {
+        animation: rotate 12s linear infinite;
+      }
+
+      /* Stroke Dash Animation to simulate a gauge fill/pulse */
+      @keyframes dashAnimation {
+        0% { stroke-dasharray: 5,200; }
+        50% { stroke-dasharray: 80,200; }
+        100% { stroke-dasharray: 5,200; }
+      }
+      .dash-animation {
+        animation: dashAnimation 4s linear infinite;
       }
     </style>
   </defs>
-  <rect width="100%" height="100%" fill="url(#grad1)"/>
-  <text x="5%" y="10%" dominant-baseline="middle" text-anchor="start" font-family="Arial" font-size="28" fill="url(#textGrad)">GitHub Metrics</text>
-  <text x="50%" y="10%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="36" fill="#00BFFF">Year: 2023</text>
-  <g transform="translate(50, 80)">
-    <circle cx="200" cy="200" r="50" fill="none" stroke="#FF4500" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
-    <text x="200" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FF4500">Stars: 50</text>
-    <circle cx="400" cy="200" r="50" fill="none" stroke="#32CD32" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
-    <text x="400" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#32CD32">Forks: 20</text>
-    <circle cx="600" cy="200" r="50" fill="none" stroke="#1E90FF" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
-    <text x="600" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#1E90FF">Issues: 5</text>
-    <circle cx="800" cy="200" r="50" fill="none" stroke="#FFD700" stroke-width="10" stroke-dasharray="0 100" class="fill-circle"/>
-    <text x="800" y="200" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="18" fill="#FFD700">Git Pull: 6</text>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#mainBgGradient)"/>
+
+  <!-- Title with Animated Neon Glow -->
+  <text x="50%" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" fill="#ffffff" filter="url(#neonGlow)">
+    GitHub Metrics
+  </text>
+  <text x="50%" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#ecf0f1">
+    Year: 2024
+  </text>
+
+  <!-- Enhanced Futuristic Gauges for Metrics -->
+  <!-- Positions: centers at x = 200, 400, 600, 800 and y = 300 -->
+  <g id="metrics">
+    <!-- Stars Gauge -->
+    <g transform="translate(200,300)">
+      <!-- Rotating outer ring with dash animation -->
+      <g class="rotating">
+        <circle cx="0" cy="0" r="70" fill="none" stroke="url(#ringGradient1)" stroke-width="8" opacity="0.8" class="dash-animation"/>
+      </g>
+      <!-- Inner gauge circle -->
+      <circle cx="0" cy="0" r="60" fill="url(#innerGradient)" stroke="#FF5F6D" stroke-width="4"/>
+      <!-- Metric Text -->
+      <text x="0" y="-10" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="20" fill="#ffffff">
+        Stars
+      </text>
+      <text x="0" y="25" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff">
+        1K
+      </text>
+    </g>
+
+    <!-- Forks Gauge -->
+    <g transform="translate(400,300)">
+      <g class="rotating">
+        <circle cx="0" cy="0" r="70" fill="none" stroke="url(#ringGradient2)" stroke-width="8" opacity="0.8" class="dash-animation"/>
+      </g>
+      <circle cx="0" cy="0" r="60" fill="url(#innerGradient)" stroke="#6DD5FA" stroke-width="4"/>
+      <text x="0" y="-10" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="20" fill="#ffffff">
+        Forks
+      </text>
+      <text x="0" y="25" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff">
+        4
+      </text>
+    </g>
+
+    <!-- Issues Gauge -->
+    <g transform="translate(600,300)">
+      <g class="rotating">
+        <circle cx="0" cy="0" r="70" fill="none" stroke="url(#ringGradient3)" stroke-width="8" opacity="0.8" class="dash-animation"/>
+      </g>
+      <circle cx="0" cy="0" r="60" fill="url(#innerGradient)" stroke="#a8ff78" stroke-width="4"/>
+      <text x="0" y="-10" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="20" fill="#ffffff">
+        Issues
+      </text>
+      <text x="0" y="25" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff">
+        18
+      </text>
+    </g>
+
+    <!-- Git Pull Gauge -->
+    <g transform="translate(800,300)">
+      <g class="rotating">
+        <circle cx="0" cy="0" r="70" fill="none" stroke="url(#ringGradient4)" stroke-width="8" opacity="0.8" class="dash-animation"/>
+      </g>
+      <circle cx="0" cy="0" r="60" fill="url(#innerGradient)" stroke="#FCE38A" stroke-width="4"/>
+      <text x="0" y="-10" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="20" fill="#ffffff">
+        Git Pull
+      </text>
+      <text x="0" y="25" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#ffffff">
+        12
+      </text>
+    </g>
   </g>
 </svg>
