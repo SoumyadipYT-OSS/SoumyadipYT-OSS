@@ -1,5 +1,11 @@
 <h1 align="center"> <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=500&height=70&duration=3000&lines=Hi+There!+👋;+नमस्ते!+🙏;+I'm+Soumyadip+Majumder!;" /> </h1>
 
+Crafted with ❤️ by **Soumyadip**  
+A curious mind with a passion for clean code and resonant chords.  
+When he's not sculpting backend logic in .NET, you'll find him strumming melodies on his guitar—  
+🎸 one hand on the fretboard, the other dancing across a keyboard.
+
+> _"Code like music—structured, expressive, and meant to be played with soul."_
 
 <h3 align="center">A passionate software developer from INDIA 🇮🇳</h3>
 
