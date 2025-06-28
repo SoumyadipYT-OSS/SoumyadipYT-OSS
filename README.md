@@ -48,19 +48,19 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
   <summary><h1>Skills</h1></summary>
 
   ### Programming Languages & Frameworks:
-  [![My Skills](https://skillicons.dev/icons?i=dotnet,cs,py,c,js)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=dotnet,cs,cpp,py,c,js)](https://skillicons.dev)
 
   ### Development Tools & Environments:
-  [![My Skills](https://skillicons.dev/icons?i=visualstudio,vscode,rider)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=visualstudio,vscode)](https://skillicons.dev)
 
   ### Version Control & Collaboration:
   [![My Skills](https://skillicons.dev/icons?i=git,github)](https://skillicons.dev)
 
   ### Cloud Platforms & Hosting:
-  [![My Skills](https://skillicons.dev/icons?i=azure,gcp)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=azure)](https://skillicons.dev)
 
   ### Databases & Storage:
-  [![My Skills](https://skillicons.dev/icons?i=sqlite,mysql,mongodb)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=sqlite,mysql,mongodb,sqlserver)](https://skillicons.dev)
 
   ### Frontend Development:
   [![My Skills](https://skillicons.dev/icons?i=tailwind,sass,bootstrap)](https://skillicons.dev)
@@ -69,10 +69,10 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
   [![My Skills](https://skillicons.dev/icons?i=postman)](https://skillicons.dev)
 
   ### Design & Graphics:
-  [![My Skills](https://skillicons.dev/icons?i=photoshop,figma,illustrator)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=photoshop,figma)](https://skillicons.dev)
 
   ### Other Tools & Technologies:
-  [![My Skills](https://skillicons.dev/icons?i=npm,linux)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=linux)](https://skillicons.dev)
 
 </details>
 <hr>
