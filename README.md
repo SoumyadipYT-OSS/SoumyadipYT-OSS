@@ -2,7 +2,7 @@
 
 Crafted with ❤️ by **Soumyadip**  
 A curious mind with a passion for clean code and resonant chords.  
-When he's not sculpting backend logic in .NET, you'll find him strumming melodies on his guitar—  
+When he's not sculpting backend logic implementation, you'll find him strumming melodies on his guitar—  
 🎸 one hand on the fretboard, the other dancing across a keyboard.
 
 > _"Code like music—structured, expressive, and meant to be played with soul."_
