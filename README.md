@@ -48,7 +48,7 @@ Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about te
   <summary><h1>Skills</h1></summary>
 
   ### Programming Languages & Frameworks:
-  [![My Skills](https://skillicons.dev/icons?i=dotnet,cs,cpp,py,c,js)](https://skillicons.dev)
+  [![My Skills](https://skillicons.dev/icons?i=dotnet,cs,cpp,c,py,ts)](https://skillicons.dev)
 
   ### Development Tools & Environments:
   [![My Skills](https://skillicons.dev/icons?i=visualstudio,vscode)](https://skillicons.dev)
