@@ -19,15 +19,15 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        working-directory: streaks-action
+        working-directory: ./streaks-action
         run: npm ci
 
       - name: Compile TypeScript
-        working-directory: streaks-action
+        working-directory: ./streaks-action
         run: npm run build
 
       - name: Run streak generator
-        working-directory: streaks-action
+        working-directory: ./streaks-action
         run: node dist/index.js \
              --username ${{ github.actor }} \
              --output ../streaks.svg
