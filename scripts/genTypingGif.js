@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { createCanvas, registerFont } = require('canvas');
+const { createCanvas, registerFont, loadImage } = require('canvas');
 const GIFEncoder = require('gifencoder');
 
 // Load Orbitron font
@@ -29,7 +29,7 @@ const width = 1200;
 const height = 360;
 const fontSize = 42;
 const lineHeight = 70;
-const cursorChar = '⚛'; // Chakra-inspired cursor
+const cursorChar = '⚛';
 
 const canvas = createCanvas(width, height);
 const ctx = canvas.getContext('2d');
@@ -51,7 +51,7 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
   for (let i = 1; i <= line.length; i++) {
     ctx.clearRect(0, 0, width, height);
 
-    // 🇮🇳 Realistic waving tricolor background
+    // 🇮🇳 Realistic cloth wave background
     const waveAmplitude = 30;
     const waveFrequency = 0.05;
     const wavePhase = i / 5;
@@ -60,28 +60,47 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
     for (let y = 0; y <= height; y += 10) {
       const offset = Math.sin(waveFrequency * y + wavePhase) * waveAmplitude;
       const color = y < height / 3
-        ? '#FF9933'   // Saffron
+        ? '#FF9933'
         : y < (2 * height) / 3
-        ? '#FFFFFF'   // White
-        : '#138808';  // Green
+        ? '#FFFFFF'
+        : '#138808';
       bgGradient.addColorStop(y / height, color);
     }
 
     ctx.fillStyle = bgGradient;
     ctx.fillRect(0, 0, width, height);
 
-    // Ashok Chakra-inspired animated text gradient
+    // Rotating Ashok Chakra behind text
+    const chakraX = width / 2;
+    const chakraY = height / 2;
+    const chakraRadius = 60;
+    const chakraSpokes = 24;
+    const chakraAngle = i * 0.05;
+
+    ctx.save();
+    ctx.translate(chakraX, chakraY);
+    ctx.rotate(chakraAngle);
+    ctx.strokeStyle = '#000080';
+    ctx.lineWidth = 2;
+    for (let s = 0; s < chakraSpokes; s++) {
+      const angle = (2 * Math.PI * s) / chakraSpokes;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(chakraRadius * Math.cos(angle), chakraRadius * Math.sin(angle));
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Particle trail for character reveal
     const chakraHue = (i * 8) % 360;
+    ctx.shadowColor = `hsl(${chakraHue}, 100%, 50%)`;
+    ctx.shadowBlur = 12 + Math.cos(i / 3) * 6;
+
     const textGradient = ctx.createLinearGradient(0, 0, width, 0);
     textGradient.addColorStop(0, `hsl(${chakraHue}, 100%, 30%)`);
     textGradient.addColorStop(1, `hsl(${(chakraHue + 60) % 360}, 100%, 40%)`);
     ctx.fillStyle = textGradient;
 
-    // Rotational shimmer glow
-    ctx.shadowColor = `hsl(${(chakraHue + 180) % 360}, 100%, 50%)`;
-    ctx.shadowBlur = 12 + Math.cos(i / 3) * 6;
-
-    // Line-by-line typing with chakra cursor
     for (let j = 0; j <= lineIndex; j++) {
       const y = 100 + j * lineHeight;
       const alpha = j === lineIndex ? Math.min(1, i / 10) : 1;
@@ -93,6 +112,16 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
         : lines[j];
 
       ctx.fillText(displayText, 40, y);
+
+      // Particle sparkle trail
+      if (j === lineIndex && i < lines[j].length) {
+        const sparkleX = 40 + ctx.measureText(lines[j].substring(0, i)).width;
+        const sparkleY = y - 10;
+        ctx.beginPath();
+        ctx.arc(sparkleX, sparkleY, 4, 0, 2 * Math.PI);
+        ctx.fillStyle = `hsl(${(chakraHue + 120) % 360}, 100%, 70%)`;
+        ctx.fill();
+      }
     }
 
     encoder.addFrame(ctx);
@@ -108,18 +137,18 @@ finalBg.addColorStop(1, '#138808');
 ctx.fillStyle = finalBg;
 ctx.fillRect(0, 0, width, height);
 
-// Radial burst behind text
+// Radial burst
 const burstGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width / 2);
 burstGradient.addColorStop(0, '#FFD700');
 burstGradient.addColorStop(1, 'transparent');
 ctx.fillStyle = burstGradient;
 ctx.fillRect(0, 0, width, height);
 
-ctx.shadowColor = '#000080'; // Chakra blue
+// Chakra glow
+ctx.shadowColor = '#000080';
 ctx.shadowBlur = 16;
 ctx.globalAlpha = 1;
 
-// Final text gradient
 const finalTextGradient = ctx.createLinearGradient(0, 0, width, 0);
 finalTextGradient.addColorStop(0, '#000080');
 finalTextGradient.addColorStop(1, '#1E90FF');
