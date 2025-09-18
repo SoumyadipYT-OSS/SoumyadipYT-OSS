@@ -29,7 +29,6 @@ async function fetchContributions(username: string): Promise<string[]> {
     }
   });
 
-  // Remove duplicates and sort
   return Array.from(new Set(dates)).sort();
 }
 
@@ -44,8 +43,7 @@ function computeStreaks(dates: string[]): { current: number; longest: number } {
     if (!lastDate) {
       current = 1;
     } else {
-      const diff =
-        (date.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
+      const diff = (date.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
       current = diff === 1 ? current + 1 : 1;
     }
     longest = Math.max(longest, current);
@@ -53,8 +51,7 @@ function computeStreaks(dates: string[]): { current: number; longest: number } {
   }
 
   if (lastDate) {
-    const delta =
-      (today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
+    const delta = (today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
     if (delta > 1) {
       current = 0;
     }
@@ -85,21 +82,17 @@ async function main(): Promise<void> {
     .parseSync() as Args;
 
   const dates = await fetchContributions(argv.username);
-  if (argv.verbose) {
-    console.log("🗓️ Fetched dates:", dates);
-  }
+  if (argv.verbose) console.log("🗓️ Fetched dates:", dates);
 
   const { current, longest } = computeStreaks(dates);
-  if (argv.verbose) {
-    console.log(`Computed streaks → current=${current}, longest=${longest}`);
-  }
+  if (argv.verbose) console.log(`Computed streaks → current=${current}, longest=${longest}`);
 
   const svg = renderSVG(current, longest);
   writeFileSync(argv.output, svg, "utf-8");
   console.log(`Wrote ${argv.output}: current=${current}, longest=${longest}`);
 }
 
-main().catch((err) => {
+main().catch(err => {
   console.error(err);
   process.exit(1);
 });
