@@ -69,6 +69,7 @@ async function generateStreaks() {
 
     fs.writeFileSync(outPath, svg, { encoding: 'utf-8' });
     console.log(`Streaks SVG generated at ${outPath}`);
+    console.log('Preview:\n', svg.slice(0, 200), '...');
   } catch (err) {
     console.error('Error generating streaks:', err);
     process.exit(1);
