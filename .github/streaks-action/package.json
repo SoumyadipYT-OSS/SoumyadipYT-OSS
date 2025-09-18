@@ -6,13 +6,15 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@octokit/rest": "^19.0.7",
-    "@octokit/graphql": "^5.0.1",
+    "node-fetch": "^2.6.7",
+    "cheerio": "^1.0.0-rc.12",
     "yargs": "^17.6.2"
   },
   "devDependencies": {
     "typescript": "^5.0.4",
     "@types/node": "^18.16.5",
+    "@types/node-fetch": "^2.6.2",
+    "@types/cheerio": "^0.22.30",
     "@types/yargs": "^17.0.24"
   }
 }
