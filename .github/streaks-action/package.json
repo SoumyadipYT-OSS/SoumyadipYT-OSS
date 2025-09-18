@@ -1,0 +1,18 @@
+// package.json
+{
+  "name": "streaks-action",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@octokit/rest": "^19.0.7",
+    "yargs": "^17.6.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "@types/node": "^18.16.5",
+    "@types/yargs": "^17.0.24"
+  }
+}
