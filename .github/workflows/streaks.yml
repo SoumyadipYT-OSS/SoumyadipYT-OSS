@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GITHUB_TOKEN: ${{ secrets.STREAKS_TOKEN }}
+      STREAKS_TOKEN: ${{ secrets.STREAKS_TOKEN }}
 
     steps:
       - name: Checkout repository
