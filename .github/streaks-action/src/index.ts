@@ -7,10 +7,9 @@ import { hideBin } from "yargs/helpers";
 interface Args {
   username: string;
   output: string;
-  verbose?: boolean;
+  verbose: boolean;
 }
 
-// ① contributions-página স্ক্র্যাপ করে data-date সংগ্রহ
 async function fetchContributions(username: string): Promise<string[]> {
   const url = `https://github.com/users/${username}/contributions`;
   const res = await fetch(url);
@@ -22,20 +21,22 @@ async function fetchContributions(username: string): Promise<string[]> {
   const dates: string[] = [];
 
   $("rect").each((_, rect) => {
-    const count = parseInt($(rect).attr("data-count") || "0", 10);
-    const date  = $(rect).attr("data-date");
+    const countAttr = $(rect).attr("data-count");
+    const date = $(rect).attr("data-date") || "";
+    const count = countAttr ? parseInt(countAttr, 10) : 0;
     if (count > 0 && date) {
       dates.push(date);
     }
   });
 
-  return dates.sort();
+  return Array.from(new Set(dates)).sort();
 }
 
-// ② স্ট্রিক গণনা
-function computeStreaks(dates: string[]) {
+function computeStreaks(dates: string[]): { current: number; longest: number } {
   const today = new Date();
-  let current = 0, longest = 0, lastDate: Date | null = null;
+  let current = 0;
+  let longest = 0;
+  let lastDate: Date | null = null;
 
   for (const d of dates) {
     const date = new Date(d);
@@ -49,16 +50,17 @@ function computeStreaks(dates: string[]) {
     lastDate = date;
   }
 
-  const delta = lastDate
-    ? (today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24)
-    : Infinity;
-  if (delta > 1) current = 0;
+  if (lastDate) {
+    const delta = (today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
+    if (delta > 1) {
+      current = 0;
+    }
+  }
 
   return { current, longest };
 }
 
-// ③ SVG তৈরির টেমপ্লেট
-function renderSVG(current: number, longest: number) {
+function renderSVG(current: number, longest: number): string {
   return `
 <svg width="250" height="80" xmlns="http://www.w3.org/2000/svg">
   <style>
@@ -69,10 +71,10 @@ function renderSVG(current: number, longest: number) {
   <text x="10" y="55" class="value">${current} days</text>
   <text x="130" y="25" class="title">Longest Streak</text>
   <text x="130" y="55" class="value">${longest} days</text>
-</svg>`;
+</svg>`.trim();
 }
 
-async function main() {
+async function main(): Promise<void> {
   const argv = yargs(hideBin(process.argv))
     .option("username", { type: "string", demandOption: true })
     .option("output",   { type: "string", demandOption: true })
@@ -80,9 +82,21 @@ async function main() {
     .parseSync() as Args;
 
   const dates = await fetchContributions(argv.username);
-  if (argv.verbose) console.log("🗓️ dates:", dates);
+  if (argv.verbose) {
+    console.log("🗓️ Fetched dates:", dates);
+  }
 
   const { current, longest } = computeStreaks(dates);
-  if (argv.verbose) console.log(`🏅 streaks → current=${current}, longest=${longest}`);
+  if (argv.verbose) {
+    console.log(`Computed streaks → current=${current}, longest=${longest}`);
+  }
 
-  const svg = render
+  const svg = renderSVG(current, longest);
+  writeFileSync(argv.output, svg, "utf-8");
+  console.log(`Wrote ${argv.output}: current=${current}, longest=${longest}`);
+}
+
+main().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
