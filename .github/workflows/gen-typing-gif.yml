@@ -23,7 +23,7 @@ jobs:
       - name: Generate typing.gif
         run: node scripts/genTypingGif.js
 
-      - name: Commit and push GIF
+      - name: Commit & push GIF
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
