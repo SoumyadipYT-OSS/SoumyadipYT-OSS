@@ -1,0 +1,12 @@
+name: "Generate GitHub Streaks SVG"
+description: "Fetches contribution data and renders streak counts as an SVG."
+inputs:
+  username:
+    description: "SoumyadipYT-OSS"
+    required: true
+  output:
+    description: "../../assets/**"
+    required: true
+runs:
+  using: "node12"
+  main: "dist/index.js"
