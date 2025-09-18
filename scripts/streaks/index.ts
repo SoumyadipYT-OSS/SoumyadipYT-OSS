@@ -1,6 +1,7 @@
 import { request, gql } from 'graphql-request';
 import fs from 'fs';
 import path from 'path';
+import { calculateStreaks, ContributionDay } from './calculateStreaks';
 import { renderStreakSVG } from './renderStreakSVG';
 
 // Token from environment (GitHub Actions or local .env)
@@ -40,35 +41,22 @@ const query = gql`
 
 // Main function to generate streaks
 async function generateStreaks() {
-  const data = await request(endpoint, query, {}, headers);
-  const days = data.user.contributionsCollection.contributionCalendar.weeks
-    .flatMap((week: any) => week.contributionDays);
+  try {
+    const data = await request(endpoint, query, {}, headers);
+    const days: ContributionDay[] = data.user.contributionsCollection.contributionCalendar.weeks
+      .flatMap((week: any) => week.contributionDays);
 
-  let currentStreak = 0;
-  let longestStreak = 0;
-  let totalActiveDays = 0;
-  let tempStreak = 0;
+    const { currentStreak, longestStreak, totalActiveDays } = calculateStreaks(days);
 
-  for (let i = days.length - 1; i >= 0; i--) {
-    const count = days[i].contributionCount;
-    if (count > 0) {
-      totalActiveDays++;
-      tempStreak++;
-      if (currentStreak === 0) currentStreak = tempStreak;
-    } else {
-      longestStreak = Math.max(longestStreak, tempStreak);
-      tempStreak = 0;
-    }
+    const svg = renderStreakSVG(currentStreak, longestStreak, totalActiveDays);
+
+    const outPath = path.join('assets', 'streaks.svg');
+    fs.writeFileSync(outPath, svg);
+    console.log(`Streaks SVG generated at ${outPath}`);
+  } catch (err) {
+    console.error('Error generating streaks:', err);
+    process.exit(1);
   }
-  longestStreak = Math.max(longestStreak, tempStreak);
-
-  const svg = renderStreakSVG(currentStreak, longestStreak, totalActiveDays);
-
-  const outPath = path.join('assets', 'streaks.svg');
-  fs.writeFileSync(outPath, svg);
-  console.log(`Streaks SVG generated at ${outPath}`);
 }
 
-generateStreaks().catch((err) => {
-  console.error('Error generating streaks:', err);
-});
+generateStreaks();
