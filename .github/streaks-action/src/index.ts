@@ -1,5 +1,5 @@
 import { writeFileSync } from "fs";
-import fetch from "node-fetch";
+import axios from "axios";
 import * as cheerio from "cheerio";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
@@ -12,23 +12,24 @@ interface Args {
 
 async function fetchContributions(username: string): Promise<string[]> {
   const url = `https://github.com/users/${username}/contributions`;
-  const res = await fetch(url);
-  if (!res.ok) {
+  const res = await axios.get<string>(url);
+  if (res.status !== 200) {
     throw new Error(`Failed to fetch contributions page: ${res.status}`);
   }
-  const html = await res.text();
-  const $ = cheerio.load(html);
+
+  const $ = cheerio.load(res.data);
   const dates: string[] = [];
 
   $("rect").each((_, rect) => {
     const countAttr = $(rect).attr("data-count");
-    const date = $(rect).attr("data-date") || "";
+    const dateAttr  = $(rect).attr("data-date");
     const count = countAttr ? parseInt(countAttr, 10) : 0;
-    if (count > 0 && date) {
-      dates.push(date);
+    if (count > 0 && dateAttr) {
+      dates.push(dateAttr);
     }
   });
 
+  // Remove duplicates and sort
   return Array.from(new Set(dates)).sort();
 }
 
@@ -43,7 +44,8 @@ function computeStreaks(dates: string[]): { current: number; longest: number } {
     if (!lastDate) {
       current = 1;
     } else {
-      const diff = (date.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
+      const diff =
+        (date.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
       current = diff === 1 ? current + 1 : 1;
     }
     longest = Math.max(longest, current);
@@ -51,7 +53,8 @@ function computeStreaks(dates: string[]): { current: number; longest: number } {
   }
 
   if (lastDate) {
-    const delta = (today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
+    const delta =
+      (today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
     if (delta > 1) {
       current = 0;
     }
@@ -96,7 +99,7 @@ async function main(): Promise<void> {
   console.log(`Wrote ${argv.output}: current=${current}, longest=${longest}`);
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
