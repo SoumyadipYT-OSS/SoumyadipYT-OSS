@@ -3,6 +3,11 @@
     src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=48&pause=800&center=true&vCenter=true&width=800&height=110&duration=900&color=00E5FF&background=0D0D0D00&border=true&borderColor=00E5FF&lines=Hi+There!+👋;+नमस्ते!+🙏;+I%27m+Soumyadip+Majumder!;+कोड+की+ताकत+से+भविष्य+बनाएं!+✨;+চল,+কোডিং-এ+স্বপ্নকে+জীবন্ত+করি!+✨"
     alt="Futuristic Typing Header" />
 </h1>
+
+<p align="center">
+  <img src="assets/typing.gif" alt="Typing Animation" />
+</p>
+
 Crafted with ❤️ by **Soumyadip**  
 A curious mind with a passion for clean code and resonant chords.  
 When he's not sculpting backend logic implementation, you'll find him strumming melodies on his guitar—  
