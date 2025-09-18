@@ -7,22 +7,29 @@ import path from 'path';
 import { calculateStreaks, ContributionDay } from './calculateStreaks';
 import { renderStreakSVG } from './renderStreakSVG';
 
-// Load GitHub token from environment
-const token = process.env.STREAKS_TOKEN;
-if (!token) {
-  throw new Error('GITHUB_TOKEN not found in environment');
+// GraphQL response type
+interface GithubContributionsResponse {
+  user: {
+    contributionsCollection: {
+      contributionCalendar: {
+        weeks: {
+          contributionDays: ContributionDay[];
+        }[];
+      };
+    };
+  };
 }
 
-// GitHub GraphQL API endpoint and headers
-const endpoint = 'https://api.github.com/graphql';
-const headers = {
-  Authorization: `Bearer ${token}`,
-};
+// Load GitHub token from env (workflow injects STREAKS_TOKEN)
+const token = process.env.STREAKS_TOKEN;
+if (!token) {
+  throw new Error('STREAKS_TOKEN not found in environment');
+}
 
-// GitHub username to query
+const endpoint = 'https://api.github.com/graphql';
+const headers = { Authorization: `Bearer ${token}` };
 const username = 'SoumyadipYT-OSS';
 
-// GraphQL query to fetch contribution calendar
 const query = gql`
   query {
     user(login: "${username}") {
@@ -40,36 +47,42 @@ const query = gql`
   }
 `;
 
-// Main function to generate streaks and write SVG
 async function generateStreaks() {
   try {
-    const data = await request(endpoint, query, {}, headers);
+    // Fetch and type the response
+    const data = await request<GithubContributionsResponse>(
+      endpoint,
+      query,
+      {},
+      headers
+    );
 
-    if (!data?.user?.contributionsCollection?.contributionCalendar?.weeks) {
+    const weeks = data.user.contributionsCollection.contributionCalendar.weeks;
+    if (weeks.length === 0) {
       throw new Error('No contribution data returned');
     }
 
-    const days: ContributionDay[] = data.user.contributionsCollection.contributionCalendar.weeks
-      .flatMap((week: any) => week.contributionDays);
+    const days: ContributionDay[] = weeks.flatMap(week => week.contributionDays);
 
-    if (days.length === 0) {
-      throw new Error('Contribution calendar is empty');
-    }
+    // Optional debug logs
+    console.log('First day:', days[0]);
+    console.log('Last day:', days[days.length - 1]);
 
     const { currentStreak, longestStreak, totalActiveDays } = calculateStreaks(days);
+    console.log({ currentStreak, longestStreak, totalActiveDays });
+
     const svg = renderStreakSVG(currentStreak, longestStreak, totalActiveDays);
 
-    const outPath = path.resolve(process.cwd(), 'assets/streaks.svg');
-    const dir = path.dirname(outPath);
-
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-      console.log(`Created directory: ${dir}`);
+    // Ensure assets directory exists
+    const assetsDir = path.resolve(process.cwd(), 'assets');
+    if (!fs.existsSync(assetsDir)) {
+      fs.mkdirSync(assetsDir, { recursive: true });
+      console.log(`Created directory: ${assetsDir}`);
     }
 
-    fs.writeFileSync(outPath, svg, { encoding: 'utf-8' });
+    const outPath = path.join(assetsDir, 'streaks.svg');
+    fs.writeFileSync(outPath, svg, 'utf-8');
     console.log(`Streaks SVG generated at ${outPath}`);
-    console.log('Preview:\n', svg.slice(0, 200), '...');
   } catch (err) {
     console.error('Error generating streaks:', err);
     process.exit(1);
