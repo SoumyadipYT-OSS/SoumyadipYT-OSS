@@ -21,15 +21,15 @@ if (!fs.existsSync(outDir)) {
 // Typing lines
 const lines = [
   "Hi, I'm Soumyadip Majumder 👨‍💻",
-  "A developer from India & Bengali-first educator 🌐",
+  "A developer from India 🇮🇳 & Bengali-first educator 🌐",
   "Contributor onboarding starts here 🚀"
 ];
 
 const width = 1200;
-const height = 360; // Increased height for better spacing
+const height = 360;
 const fontSize = 42;
 const lineHeight = 70;
-const cursorChar = '⎸'; // Sleek cursor
+const cursorChar = '⎸';
 
 const canvas = createCanvas(width, height);
 const ctx = canvas.getContext('2d');
@@ -51,22 +51,22 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
   for (let i = 1; i <= line.length; i++) {
     ctx.clearRect(0, 0, width, height);
 
-    // Animated background gradient
+    // Cyber Sunset background gradient
     const shift = (lineIndex * 10 + i) % 360;
     const bgGradient = ctx.createLinearGradient(0, 0, width, height);
-    bgGradient.addColorStop(0, `hsl(${shift}, 60%, 15%)`);
-    bgGradient.addColorStop(0.5, `hsl(${(shift + 60) % 360}, 60%, 20%)`);
-    bgGradient.addColorStop(1, `hsl(${(shift + 120) % 360}, 60%, 25%)`);
+    bgGradient.addColorStop(0, `hsl(${(shift + 20) % 360}, 80%, 30%)`);
+    bgGradient.addColorStop(0.5, `hsl(${(shift + 60) % 360}, 80%, 40%)`);
+    bgGradient.addColorStop(1, `hsl(${(shift + 100) % 360}, 80%, 35%)`);
     ctx.fillStyle = bgGradient;
     ctx.fillRect(0, 0, width, height);
 
-    // Animated text gradient
+    // Animated text gradient shimmer
     const textGradient = ctx.createLinearGradient(0, 0, width, 0);
-    textGradient.addColorStop(0, `hsl(${(shift + 180) % 360}, 100%, 60%)`);
-    textGradient.addColorStop(1, `hsl(${(shift + 240) % 360}, 100%, 60%)`);
+    textGradient.addColorStop(0, `hsl(${(shift + 180) % 360}, 100%, 65%)`);
+    textGradient.addColorStop(1, `hsl(${(shift + 240) % 360}, 100%, 65%)`);
     ctx.fillStyle = textGradient;
 
-    // Pulsing glow
+    // Breathing glow
     ctx.shadowColor = `hsl(${(shift + 300) % 360}, 100%, 50%)`;
     ctx.shadowBlur = 10 + Math.sin(i / 2) * 6;
 
@@ -88,24 +88,24 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
   }
 }
 
-// Final frame (no cursor, full glow)
+// Final frame with golden burst
 ctx.clearRect(0, 0, width, height);
 const finalBg = ctx.createLinearGradient(0, 0, width, height);
-finalBg.addColorStop(0, '#1a1a2e');
-finalBg.addColorStop(0.5, '#16213e');
-finalBg.addColorStop(1, '#0f3460');
+finalBg.addColorStop(0, '#2C3E50');
+finalBg.addColorStop(0.5, '#FD746C');
+finalBg.addColorStop(1, '#FF9068');
 ctx.fillStyle = finalBg;
 ctx.fillRect(0, 0, width, height);
 
-ctx.shadowColor = '#00FFFF';
-ctx.shadowBlur = 14;
+ctx.shadowColor = '#FFD700';
+ctx.shadowBlur = 16;
 ctx.globalAlpha = 1;
 
 // Final text gradient
 const finalTextGradient = ctx.createLinearGradient(0, 0, width, 0);
-finalTextGradient.addColorStop(0, '#00E5FF');
-finalTextGradient.addColorStop(0.5, '#FF00C8');
-finalTextGradient.addColorStop(1, '#FFD700');
+finalTextGradient.addColorStop(0, '#FFD700');
+finalTextGradient.addColorStop(0.5, '#FF3CAC');
+finalTextGradient.addColorStop(1, '#FF6B6B');
 ctx.fillStyle = finalTextGradient;
 
 for (let j = 0; j < lines.length; j++) {
