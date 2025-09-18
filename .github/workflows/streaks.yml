@@ -1,19 +1,17 @@
+# .github/workflows/streaks.yml
+
 name: Generate GitHub Streaks
 
 on:
-  push:
-    paths:
-      - scripts/streaks/**
-      - .github/workflows/streaks.yml
-      - assets/**
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '30 18 * * *'
   workflow_dispatch:
-jobs:
-  generate-streaks:
-    runs-on: ubuntu-latest
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
     env:
+      # STREAKS_TOKEN সেক্রেটে সেট করতে হবে
       STREAKS_TOKEN: ${{ secrets.STREAKS_TOKEN }}
 
     steps:
@@ -23,27 +21,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '18.x'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Generate streaks
-        run: |
-          echo "Running streak generator..."
-          npx ts-node scripts/streaks/index.ts
+      - name: Generate streaks SVG
+        run: npm run generate-streaks
 
-      - name: Show SVG preview (first 10 lines)
-        run: head -n 10 assets/streaks.svg || echo "streaks.svg not found"
-
-      - name: Commit streaks.svg if changed
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          if git diff --quiet assets/streaks.svg; then
-            echo "No changes detected in streaks.svg"
-          else
-            echo "Changes detected, committing streaks.svg..."
-            git add assets/streaks.svg
-            git commit -m "Update GitHub streaks"
-            git push
+      - name: Commit & push updated SVG
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: chore: update generated streaks SVG
+          file_pattern: assets/streaks.svg
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          push: true
