@@ -1,0 +1,39 @@
+name: Generate GitHub Streaks
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: streaks-action
+        run: npm ci
+
+      - name: Compile TypeScript
+        working-directory: streaks-action
+        run: npm run build
+
+      - name: Run streak generator
+        working-directory: streaks-action
+        run: node dist/index.js \
+             --username ${{ github.actor }} \
+             --output ../streaks.svg
+
+      - name: Commit and push SVG
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore: update streaks.svg"
+          file_pattern: streaks.svg
