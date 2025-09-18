@@ -15,21 +15,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # ← এখানেই ডিপেন্ডেন্সি ইনস্টল
-      - name: Install dependencies
+      - name: Install & Build streaks-action
         run: |
           cd .github/streaks-action
           npm install
-
-      - name: Compile TypeScript
-        run: |
-          cd .github/streaks-action
           npm run build
 
       - name: Run streak generator
@@ -42,5 +39,6 @@ jobs:
       - name: Commit and push SVG
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit_message: "chore: update streaks.svg"
           file_pattern: streaks.svg
