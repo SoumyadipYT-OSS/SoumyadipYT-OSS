@@ -5,12 +5,25 @@ on:
     branches:
       - main
 
+concurrency:
+  group: typing-gif-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-gif:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -18,7 +31,7 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm install canvas gifencoder
+        run: npm ci
 
       - name: Generate typing.gif
         run: node scripts/genTypingGif.js
