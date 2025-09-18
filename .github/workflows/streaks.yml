@@ -18,19 +18,23 @@ jobs:
         with:
           node-version: '18'
 
+      # ← এখানেই ডিপেন্ডেন্সি ইনস্টল
       - name: Install dependencies
-        working-directory: .github/streaks-action
-        run: npm ci
+        run: |
+          cd .github/streaks-action
+          npm install
 
       - name: Compile TypeScript
-        working-directory: .github/streaks-action
-        run: npm run build
+        run: |
+          cd .github/streaks-action
+          npm run build
 
       - name: Run streak generator
-        working-directory: .github/streaks-action
-        run: node dist/index.js \
-             --username ${{ github.actor }} \
-             --output ../streaks.svg
+        run: |
+          cd .github/streaks-action
+          node dist/index.js \
+            --username ${{ github.actor }} \
+            --output ../../streaks.svg
 
       - name: Commit and push SVG
         uses: stefanzweifel/git-auto-commit-action@v4
