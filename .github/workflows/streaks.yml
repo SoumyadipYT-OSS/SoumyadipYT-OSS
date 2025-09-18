@@ -30,7 +30,7 @@ jobs:
 
       - name: Generate streaks
         run: |
-          echo "🔧 Running streak generator..."
+          echo "Running streak generator..."
           npx ts-node scripts/streaks/index.ts
 
       - name: Show SVG preview (first 10 lines)
