@@ -3,15 +3,21 @@
 name: Generate GitHub Streaks
 
 on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'assets/**'
+
   schedule:
     - cron: '30 18 * * *'
+
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # STREAKS_TOKEN সেক্রেটে সেট করতে হবে
       STREAKS_TOKEN: ${{ secrets.STREAKS_TOKEN }}
 
     steps:
@@ -22,7 +28,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
-          cache: 'npm'
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
