@@ -1,1 +1,37 @@
+name: Generate GitHub Streaks
 
+on:
+  schedule:
+    - cron: '0 0 * * *' # runs daily at midnight
+  workflow_dispatch:     # allows manual trigger
+
+jobs:
+  generate-streaks:
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.STREAKS_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run streak generator
+        run: npx ts-node scripts/streaks/index.ts
+
+      - name: Commit updated streaks.svg
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add assets/streaks.svg
+          git commit -m "Update GitHub streaks"
+          git push
+          
