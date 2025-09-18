@@ -20,8 +20,7 @@ if (!fs.existsSync(outDir)) {
 // Multilingual onboarding lines
 const lines = [
   "Hi, I'm Soumyadip Majumder 👨‍💻",
-  "Inventive backend developer & Bengali-first educator 🌐",
-  "চলো কোডিং দিয়ে স্বপ্নকে বাস্তব করি ✨",
+  "A developer from India & Bengali-first educator 🌐",
   "Contributor onboarding starts here 🚀"
 ];
 
