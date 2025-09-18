@@ -2,7 +2,7 @@ const fs = require('fs');
 const { createCanvas, registerFont } = require('canvas');
 const GIFEncoder = require('gifencoder');
 
-// Load Orbitron font if available
+// Load Orbitron font
 const fontPath = './fonts/Orbitron-Regular.ttf';
 const fontFamily = fs.existsSync(fontPath) ? 'Orbitron' : 'sans-serif';
 if (fs.existsSync(fontPath)) {
@@ -29,7 +29,7 @@ const width = 1200;
 const height = 360;
 const fontSize = 42;
 const lineHeight = 70;
-const cursorChar = '⎸';
+const cursorChar = '⚛'; // Chakra-inspired cursor
 
 const canvas = createCanvas(width, height);
 const ctx = canvas.getContext('2d');
@@ -51,26 +51,27 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
   for (let i = 1; i <= line.length; i++) {
     ctx.clearRect(0, 0, width, height);
 
-    // Cyber Sunset background gradient
-    const shift = (lineIndex * 10 + i) % 360;
-    const bgGradient = ctx.createLinearGradient(0, 0, width, height);
-    bgGradient.addColorStop(0, `hsl(${(shift + 20) % 360}, 80%, 30%)`);
-    bgGradient.addColorStop(0.5, `hsl(${(shift + 60) % 360}, 80%, 40%)`);
-    bgGradient.addColorStop(1, `hsl(${(shift + 100) % 360}, 80%, 35%)`);
+    // 🇮🇳 Waving tricolor background
+    const waveOffset = Math.sin(i / 10) * 40;
+    const bgGradient = ctx.createLinearGradient(0, waveOffset, width, height + waveOffset);
+    bgGradient.addColorStop(0, '#FF9933');   // Saffron
+    bgGradient.addColorStop(0.5, '#FFFFFF'); // White
+    bgGradient.addColorStop(1, '#138808');   // Green
     ctx.fillStyle = bgGradient;
     ctx.fillRect(0, 0, width, height);
 
-    // Animated text gradient shimmer
+    // Ashok Chakra-inspired text gradient
+    const chakraHue = (i * 5) % 360;
     const textGradient = ctx.createLinearGradient(0, 0, width, 0);
-    textGradient.addColorStop(0, `hsl(${(shift + 180) % 360}, 100%, 65%)`);
-    textGradient.addColorStop(1, `hsl(${(shift + 240) % 360}, 100%, 65%)`);
+    textGradient.addColorStop(0, `hsl(${chakraHue}, 100%, 30%)`);
+    textGradient.addColorStop(1, `hsl(${(chakraHue + 60) % 360}, 100%, 40%)`);
     ctx.fillStyle = textGradient;
 
-    // Breathing glow
-    ctx.shadowColor = `hsl(${(shift + 300) % 360}, 100%, 50%)`;
+    // Rotational shimmer glow
+    ctx.shadowColor = `hsl(${(chakraHue + 180) % 360}, 100%, 50%)`;
     ctx.shadowBlur = 10 + Math.sin(i / 2) * 6;
 
-    // Line-by-line typing with blinking cursor
+    // Line-by-line typing with chakra cursor
     for (let j = 0; j <= lineIndex; j++) {
       const y = 100 + j * lineHeight;
       const alpha = j === lineIndex ? Math.min(1, i / 10) : 1;
@@ -91,9 +92,9 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
 // Final frame with golden burst
 ctx.clearRect(0, 0, width, height);
 const finalBg = ctx.createLinearGradient(0, 0, width, height);
-finalBg.addColorStop(0, '#2C3E50');
-finalBg.addColorStop(0.5, '#FD746C');
-finalBg.addColorStop(1, '#FF9068');
+finalBg.addColorStop(0, '#FF9933');
+finalBg.addColorStop(0.5, '#FFFFFF');
+finalBg.addColorStop(1, '#138808');
 ctx.fillStyle = finalBg;
 ctx.fillRect(0, 0, width, height);
 
@@ -101,11 +102,10 @@ ctx.shadowColor = '#FFD700';
 ctx.shadowBlur = 16;
 ctx.globalAlpha = 1;
 
-// Final text gradient
+// Final text gradient (chakra blue)
 const finalTextGradient = ctx.createLinearGradient(0, 0, width, 0);
-finalTextGradient.addColorStop(0, '#FFD700');
-finalTextGradient.addColorStop(0.5, '#FF3CAC');
-finalTextGradient.addColorStop(1, '#FF6B6B');
+finalTextGradient.addColorStop(0, '#000080');
+finalTextGradient.addColorStop(1, '#1E90FF');
 ctx.fillStyle = finalTextGradient;
 
 for (let j = 0; j < lines.length; j++) {
@@ -116,4 +116,4 @@ for (let j = 0; j < lines.length; j++) {
 encoder.addFrame(ctx);
 encoder.finish();
 
-console.log('Cinematic typing.gif generated in assets/');
+console.log('Tricolor cinematic typing.gif generated in assets/');
