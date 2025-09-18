@@ -2,8 +2,9 @@ const fs = require('fs');
 const { createCanvas, registerFont } = require('canvas');
 const GIFEncoder = require('gifencoder');
 
-// Load Orbitron font (ensure this file exists in your repo)
+// Load Orbitron font if available
 const fontPath = './fonts/Orbitron-Regular.ttf';
+const fontFamily = fs.existsSync(fontPath) ? 'Orbitron' : 'sans-serif';
 if (fs.existsSync(fontPath)) {
   registerFont(fontPath, { family: 'Orbitron' });
   console.log('Orbitron font loaded');
@@ -17,7 +18,7 @@ if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir, { recursive: true });
 }
 
-// Multilingual onboarding lines
+// Typing lines
 const lines = [
   "Hi, I'm Soumyadip Majumder 👨‍💻",
   "A developer from India & Bengali-first educator 🌐",
@@ -25,19 +26,13 @@ const lines = [
 ];
 
 const width = 1200;
-const height = 240;
+const height = 360; // Increased height for better spacing
 const fontSize = 42;
-const lineHeight = 60;
-const cursorChar = '|';
+const lineHeight = 70;
+const cursorChar = '⎸'; // Sleek cursor
 
 const canvas = createCanvas(width, height);
 const ctx = canvas.getContext('2d');
-
-// Global text gradient
-const textGradient = ctx.createLinearGradient(0, 0, width, 0);
-textGradient.addColorStop(0, '#00E5FF');
-textGradient.addColorStop(0.5, '#FF00C8');
-textGradient.addColorStop(1, '#FFD700');
 
 // GIF encoder setup
 const encoder = new GIFEncoder(width, height);
@@ -47,33 +42,37 @@ encoder.setRepeat(0);
 encoder.setDelay(100);
 encoder.setQuality(10);
 
-// Typing animation with all effects
-ctx.font = `${fontSize}px ${fs.existsSync(fontPath) ? 'Orbitron' : 'sans-serif'}`;
+// Set base font
+ctx.font = `${fontSize}px ${fontFamily}`;
 
+// Typing animation
 for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
   const line = lines[lineIndex];
   for (let i = 1; i <= line.length; i++) {
     ctx.clearRect(0, 0, width, height);
 
     // Animated background gradient
-    const shift = (lineIndex * 10 + i) % 100 / 100;
+    const shift = (lineIndex * 10 + i) % 360;
     const bgGradient = ctx.createLinearGradient(0, 0, width, height);
-    bgGradient.addColorStop(0, `hsl(${(shift * 360)}, 60%, 15%)`);
-    bgGradient.addColorStop(0.5, `hsl(${(shift * 360 + 60)}, 60%, 20%)`);
-    bgGradient.addColorStop(1, `hsl(${(shift * 360 + 120)}, 60%, 25%)`);
+    bgGradient.addColorStop(0, `hsl(${shift}, 60%, 15%)`);
+    bgGradient.addColorStop(0.5, `hsl(${(shift + 60) % 360}, 60%, 20%)`);
+    bgGradient.addColorStop(1, `hsl(${(shift + 120) % 360}, 60%, 25%)`);
     ctx.fillStyle = bgGradient;
     ctx.fillRect(0, 0, width, height);
 
-    // Text glow pulse
-    const glow = 8 + Math.sin(i / 2) * 4;
-    ctx.shadowColor = '#00FFFF';
-    ctx.shadowBlur = glow;
-
+    // Animated text gradient
+    const textGradient = ctx.createLinearGradient(0, 0, width, 0);
+    textGradient.addColorStop(0, `hsl(${(shift + 180) % 360}, 100%, 60%)`);
+    textGradient.addColorStop(1, `hsl(${(shift + 240) % 360}, 100%, 60%)`);
     ctx.fillStyle = textGradient;
 
-    // Bengali line fade-in + cursor blink
+    // Pulsing glow
+    ctx.shadowColor = `hsl(${(shift + 300) % 360}, 100%, 50%)`;
+    ctx.shadowBlur = 10 + Math.sin(i / 2) * 6;
+
+    // Line-by-line typing with blinking cursor
     for (let j = 0; j <= lineIndex; j++) {
-      const y = 80 + j * lineHeight;
+      const y = 100 + j * lineHeight;
       const alpha = j === lineIndex ? Math.min(1, i / 10) : 1;
       ctx.globalAlpha = alpha;
 
@@ -89,7 +88,7 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
   }
 }
 
-// Final frame without cursor
+// Final frame (no cursor, full glow)
 ctx.clearRect(0, 0, width, height);
 const finalBg = ctx.createLinearGradient(0, 0, width, height);
 finalBg.addColorStop(0, '#1a1a2e');
@@ -99,16 +98,22 @@ ctx.fillStyle = finalBg;
 ctx.fillRect(0, 0, width, height);
 
 ctx.shadowColor = '#00FFFF';
-ctx.shadowBlur = 12;
-ctx.fillStyle = textGradient;
+ctx.shadowBlur = 14;
 ctx.globalAlpha = 1;
 
+// Final text gradient
+const finalTextGradient = ctx.createLinearGradient(0, 0, width, 0);
+finalTextGradient.addColorStop(0, '#00E5FF');
+finalTextGradient.addColorStop(0.5, '#FF00C8');
+finalTextGradient.addColorStop(1, '#FFD700');
+ctx.fillStyle = finalTextGradient;
+
 for (let j = 0; j < lines.length; j++) {
-  const y = 80 + j * lineHeight;
+  const y = 100 + j * lineHeight;
   ctx.fillText(lines[j], 40, y);
 }
 
 encoder.addFrame(ctx);
 encoder.finish();
 
-console.log('Bengali-English cinematic GIF generated in assets/');
+console.log('Cinematic typing.gif generated in assets/');
