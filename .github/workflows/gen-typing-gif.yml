@@ -12,6 +12,7 @@ concurrency:
 jobs:
   build-gif:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
 
@@ -21,9 +22,9 @@ jobs:
           path: |
             ~/.npm
             node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('scripts/genTypingGif.js') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-node-modules-
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -31,7 +32,7 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install canvas gifencoder
 
       - name: Generate typing.gif
         run: node scripts/genTypingGif.js
