@@ -8,25 +8,27 @@ if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir, { recursive: true });
 }
 
-// Typing text
-const text = "Hi There! 👋 नमस्ते! 🙏 I'm Soumyadip Majumder! चलो साथ में कोड लिखें! 🚀 চল কোডিং-এ স্বপ্নকে জীবন্ত করি! ✨";
-const width = 800;
-const height = 120;
-const fontSize = 48;
-const cursorChar = '|'; // Blinking cursor
+// Text content (refined, less emoji-heavy)
+const text = "Hi, I'm Soumyadip Majumder — Bengali-first systems architect. Let's build modular, multilingual onboarding together.";
+const width = 1000;
+const height = 160;
+const fontSize = 42;
+const cursorChar = '|';
 
 const canvas = createCanvas(width, height);
 const ctx = canvas.getContext('2d');
 
-// Gradient fill setup
-const gradient = ctx.createLinearGradient(0, 0, width, 0);
-gradient.addColorStop(0, '#00E5FF');
-gradient.addColorStop(0.5, '#00FFC2');
-gradient.addColorStop(1, '#00FFFF');
+// Gradient background
+const bgGradient = ctx.createLinearGradient(0, 0, width, height);
+bgGradient.addColorStop(0, '#0f0c29');
+bgGradient.addColorStop(0.5, '#302b63');
+bgGradient.addColorStop(1, '#24243e');
 
-// Font setup
-ctx.font = `${fontSize}px sans-serif`;
-ctx.fillStyle = gradient;
+// Gradient text fill
+const textGradient = ctx.createLinearGradient(0, 0, width, 0);
+textGradient.addColorStop(0, '#00E5FF');
+textGradient.addColorStop(0.5, '#FF00C8');
+textGradient.addColorStop(1, '#FFD700');
 
 // GIF encoder setup
 const encoder = new GIFEncoder(width, height);
@@ -36,26 +38,39 @@ encoder.setRepeat(0);
 encoder.setDelay(100);
 encoder.setQuality(10);
 
-// Typing animation with fade-in and cursor
+// Typing animation
 for (let i = 1; i <= text.length; i++) {
   ctx.clearRect(0, 0, width, height);
 
-  // Optional fade-in effect
-  const alpha = Math.min(1, i / 10);
-  ctx.globalAlpha = alpha;
+  // Background fill
+  ctx.fillStyle = bgGradient;
+  ctx.fillRect(0, 0, width, height);
+
+  // Text setup
+  ctx.font = `${fontSize}px sans-serif`;
+  ctx.fillStyle = textGradient;
+  ctx.shadowColor = '#00FFFF';
+  ctx.shadowBlur = 12;
 
   // Draw text with cursor
   const displayText = text.substring(0, i) + cursorChar;
-  ctx.fillText(displayText, 10, 75);
+  ctx.fillText(displayText, 40, 100);
 
   encoder.addFrame(ctx);
 }
 
 // Final frame without cursor
 ctx.clearRect(0, 0, width, height);
-ctx.globalAlpha = 1;
-ctx.fillText(text, 10, 75);
-encoder.addFrame(ctx);
+ctx.fillStyle = bgGradient;
+ctx.fillRect(0, 0, width, height);
 
+ctx.font = `${fontSize}px sans-serif`;
+ctx.fillStyle = textGradient;
+ctx.shadowColor = '#00FFFF';
+ctx.shadowBlur = 12;
+ctx.fillText(text, 40, 100);
+
+encoder.addFrame(ctx);
 encoder.finish();
-console.log('✅ typing.gif generated in assets/');
+
+console.log('typing.gif generated with futuristic gradient!');
