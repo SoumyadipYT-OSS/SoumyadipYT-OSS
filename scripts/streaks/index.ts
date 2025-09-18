@@ -8,7 +8,7 @@ import { calculateStreaks, ContributionDay } from './calculateStreaks';
 import { renderStreakSVG } from './renderStreakSVG';
 
 // Load GitHub token from environment
-const token = process.env.GITHUB_TOKEN;
+const token = process.env.STREAKS_TOKEN;
 if (!token) {
   throw new Error('GITHUB_TOKEN not found in environment');
 }
