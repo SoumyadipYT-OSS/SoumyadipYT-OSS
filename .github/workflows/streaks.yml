@@ -1,5 +1,8 @@
 name: Generate GitHub Streaks
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '0 0 * * *'
