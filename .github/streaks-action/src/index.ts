@@ -1,49 +1,56 @@
 import { writeFileSync } from "fs";
 import { Octokit } from "@octokit/rest";
+import { graphql } from "@octokit/graphql";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
 interface Args {
   username: string;
   output: string;
+  verbose?: boolean;
 }
 
-type GithubEvent = { created_at: string };
-
-async function fetchContributions(
-  octokit: Octokit,
-  user: string
-): Promise<string[]> {
-  const response = await octokit.activity.listPublicEventsForUser({
-    username: user,
-    per_page: 100,
+async function fetchCalendarDates(username: string): Promise<string[]> {
+  const query = `
+    query ($login: String!) {
+      user(login: $login) {
+        contributionsCollection {
+          contributionCalendar {
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+  const res: any = await graphql(query, {
+    login: username,
+    headers: { authorization: `token ${process.env.GITHUB_TOKEN}` }
   });
 
-  // response.data আসলে GithubEvent[]—এটা এখানে কাস্ট করছি
-  const events = response.data as GithubEvent[];
+  const days = res.user.contributionsCollection.contributionCalendar.weeks
+    .flatMap((week: any) => week.contributionDays)
+    .filter((d: any) => d.contributionCount > 0)
+    .map((d: any) => d.date)
+    .sort();
 
-  // created_at থেকে YYYY-MM-DD বের করে ইউনিক ও sorted স্ট্রিং এ নিয়ে আসছি
-  const dates = events.map((e: GithubEvent) =>
-    new Date(e.created_at).toISOString().slice(0, 10)
-  );
-  const uniqueDates = Array.from(new Set(dates)).sort();
-
-  return uniqueDates;
+  return days;
 }
 
 function computeStreaks(dates: string[]) {
   const today = new Date();
-  let current = 0,
-    longest = 0,
-    lastDate: Date | null = null;
+  let current = 0, longest = 0, lastDate: Date | null = null;
 
   for (const d of dates) {
     const date = new Date(d);
     if (!lastDate) {
       current = 1;
     } else {
-      const diff =
-        (date.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
+      const diff = (date.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
       if (diff === 1) current += 1;
       else current = 1;
     }
@@ -76,19 +83,22 @@ function renderSVG(current: number, longest: number) {
 async function main() {
   const argv = yargs(hideBin(process.argv))
     .option("username", { type: "string", demandOption: true })
-    .option("output", { type: "string", demandOption: true })
+    .option("output",   { type: "string", demandOption: true })
+    .option("verbose",  { type: "boolean", default: false })
     .parseSync() as Args;
 
-  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
-  const dates = await fetchContributions(octokit, argv.username);
+  const dates = await fetchCalendarDates(argv.username);
+  if (argv.verbose) console.log("fetched dates:", dates);
+
   const { current, longest } = computeStreaks(dates);
+  if (argv.verbose) console.log(`streaks → current=${current}, longest=${longest}`);
+
   const svg = renderSVG(current, longest);
   writeFileSync(argv.output, svg, "utf-8");
-
-  console.log(`Wrote streaks: ${current} current, ${longest} longest`);
+  console.log(`Wrote streaks.svg: current=${current}, longest=${longest}`);
 }
 
-main().catch((err) => {
+main().catch(err => {
   console.error(err);
   process.exit(1);
 });
