@@ -1,6 +1,6 @@
 import { writeFileSync } from "fs";
-import { Octokit } from "@octokit/rest";
-import { graphql } from "@octokit/graphql";
+import fetch from "node-fetch";
+import * as cheerio from "cheerio";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -10,37 +10,29 @@ interface Args {
   verbose?: boolean;
 }
 
-async function fetchCalendarDates(username: string): Promise<string[]> {
-  const query = `
-    query ($login: String!) {
-      user(login: $login) {
-        contributionsCollection {
-          contributionCalendar {
-            weeks {
-              contributionDays {
-                date
-                contributionCount
-              }
-            }
-          }
-        }
-      }
+// ① contributions-página স্ক্র্যাপ করে data-date সংগ্রহ
+async function fetchContributions(username: string): Promise<string[]> {
+  const url = `https://github.com/users/${username}/contributions`;
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch contributions page: ${res.status}`);
+  }
+  const html = await res.text();
+  const $ = cheerio.load(html);
+  const dates: string[] = [];
+
+  $("rect").each((_, rect) => {
+    const count = parseInt($(rect).attr("data-count") || "0", 10);
+    const date  = $(rect).attr("data-date");
+    if (count > 0 && date) {
+      dates.push(date);
     }
-  `;
-  const res: any = await graphql(query, {
-    login: username,
-    headers: { authorization: `token ${process.env.GITHUB_TOKEN}` }
   });
 
-  const days = res.user.contributionsCollection.contributionCalendar.weeks
-    .flatMap((week: any) => week.contributionDays)
-    .filter((d: any) => d.contributionCount > 0)
-    .map((d: any) => d.date)
-    .sort();
-
-  return days;
+  return dates.sort();
 }
 
+// ② স্ট্রিক গণনা
 function computeStreaks(dates: string[]) {
   const today = new Date();
   let current = 0, longest = 0, lastDate: Date | null = null;
@@ -51,8 +43,7 @@ function computeStreaks(dates: string[]) {
       current = 1;
     } else {
       const diff = (date.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24);
-      if (diff === 1) current += 1;
-      else current = 1;
+      current = diff === 1 ? current + 1 : 1;
     }
     longest = Math.max(longest, current);
     lastDate = date;
@@ -66,6 +57,7 @@ function computeStreaks(dates: string[]) {
   return { current, longest };
 }
 
+// ③ SVG তৈরির টেমপ্লেট
 function renderSVG(current: number, longest: number) {
   return `
 <svg width="250" height="80" xmlns="http://www.w3.org/2000/svg">
@@ -87,18 +79,10 @@ async function main() {
     .option("verbose",  { type: "boolean", default: false })
     .parseSync() as Args;
 
-  const dates = await fetchCalendarDates(argv.username);
-  if (argv.verbose) console.log("fetched dates:", dates);
+  const dates = await fetchContributions(argv.username);
+  if (argv.verbose) console.log("🗓️ dates:", dates);
 
   const { current, longest } = computeStreaks(dates);
-  if (argv.verbose) console.log(`streaks → current=${current}, longest=${longest}`);
+  if (argv.verbose) console.log(`🏅 streaks → current=${current}, longest=${longest}`);
 
-  const svg = renderSVG(current, longest);
-  writeFileSync(argv.output, svg, "utf-8");
-  console.log(`Wrote streaks.svg: current=${current}, longest=${longest}`);
-}
-
-main().catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+  const svg = render
