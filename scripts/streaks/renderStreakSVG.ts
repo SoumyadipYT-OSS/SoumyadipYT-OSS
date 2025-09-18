@@ -21,12 +21,9 @@ export function renderStreakSVG(
     </linearGradient>
   </defs>
   <rect width="100%" height="100%" fill="url(#tricolor)"/>
-  <!-- Ashok Chakra background circle -->
   <g transform="translate(300,60)">
     <circle r="50" fill="none" stroke="#000080" stroke-width="4"/>
-    <!-- spokes can be added here -->
   </g>
-  <!-- Text blocks -->
   <g class="streak-group" text-anchor="middle" fill="#000">
     <text x="300" y="150" font="bold 22px sans-serif">
       Current: ${currentStreak} days
