@@ -21,8 +21,8 @@ if (!fs.existsSync(outDir)) {
 // Typing lines
 const lines = [
   "Hi, I'm Soumyadip Majumder 👨‍💻",
-  "A developer from India 🇮🇳 & Bengali-first educator 🌐",
-  "Contributor onboarding starts here 🚀"
+  "A developer from India 🇮🇳 & Bengali-first educator",
+  "Contributor onboarding starts here"
 ];
 
 const width = 1200;
@@ -51,17 +51,27 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
   for (let i = 1; i <= line.length; i++) {
     ctx.clearRect(0, 0, width, height);
 
-    // 🇮🇳 Waving tricolor background
-    const waveOffset = Math.sin(i / 10) * 40;
-    const bgGradient = ctx.createLinearGradient(0, waveOffset, width, height + waveOffset);
-    bgGradient.addColorStop(0, '#FF9933');   // Saffron
-    bgGradient.addColorStop(0.5, '#FFFFFF'); // White
-    bgGradient.addColorStop(1, '#138808');   // Green
+    // 🇮🇳 Realistic waving tricolor background
+    const waveAmplitude = 30;
+    const waveFrequency = 0.05;
+    const wavePhase = i / 5;
+    const bgGradient = ctx.createLinearGradient(0, 0, width, height);
+
+    for (let y = 0; y <= height; y += 10) {
+      const offset = Math.sin(waveFrequency * y + wavePhase) * waveAmplitude;
+      const color = y < height / 3
+        ? '#FF9933'   // Saffron
+        : y < (2 * height) / 3
+        ? '#FFFFFF'   // White
+        : '#138808';  // Green
+      bgGradient.addColorStop(y / height, color);
+    }
+
     ctx.fillStyle = bgGradient;
     ctx.fillRect(0, 0, width, height);
 
-    // Ashok Chakra-inspired text gradient
-    const chakraHue = (i * 5) % 360;
+    // Ashok Chakra-inspired animated text gradient
+    const chakraHue = (i * 8) % 360;
     const textGradient = ctx.createLinearGradient(0, 0, width, 0);
     textGradient.addColorStop(0, `hsl(${chakraHue}, 100%, 30%)`);
     textGradient.addColorStop(1, `hsl(${(chakraHue + 60) % 360}, 100%, 40%)`);
@@ -69,7 +79,7 @@ for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
 
     // Rotational shimmer glow
     ctx.shadowColor = `hsl(${(chakraHue + 180) % 360}, 100%, 50%)`;
-    ctx.shadowBlur = 10 + Math.sin(i / 2) * 6;
+    ctx.shadowBlur = 12 + Math.cos(i / 3) * 6;
 
     // Line-by-line typing with chakra cursor
     for (let j = 0; j <= lineIndex; j++) {
@@ -98,11 +108,18 @@ finalBg.addColorStop(1, '#138808');
 ctx.fillStyle = finalBg;
 ctx.fillRect(0, 0, width, height);
 
-ctx.shadowColor = '#FFD700';
+// Radial burst behind text
+const burstGradient = ctx.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, width / 2);
+burstGradient.addColorStop(0, '#FFD700');
+burstGradient.addColorStop(1, 'transparent');
+ctx.fillStyle = burstGradient;
+ctx.fillRect(0, 0, width, height);
+
+ctx.shadowColor = '#000080'; // Chakra blue
 ctx.shadowBlur = 16;
 ctx.globalAlpha = 1;
 
-// Final text gradient (chakra blue)
+// Final text gradient
 const finalTextGradient = ctx.createLinearGradient(0, 0, width, 0);
 finalTextGradient.addColorStop(0, '#000080');
 finalTextGradient.addColorStop(1, '#1E90FF');
