@@ -1,0 +1,32 @@
+name: Generate Typing GIF
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-gif:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install canvas gifencoder
+
+      - name: Generate typing.gif
+        run: node scripts/genTypingGif.js
+
+      - name: Commit and push GIF
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add assets/typing.gif
+          git commit -m "chore: update typing animation" || echo "No changes to commit"
+          git push
