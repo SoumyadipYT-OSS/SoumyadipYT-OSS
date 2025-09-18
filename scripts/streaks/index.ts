@@ -59,7 +59,7 @@ async function generateStreaks() {
     const { currentStreak, longestStreak, totalActiveDays } = calculateStreaks(days);
     const svg = renderStreakSVG(currentStreak, longestStreak, totalActiveDays);
 
-    const outPath = path.resolve(__dirname, '../../assets/streaks.svg');
+    const outPath = path.resolve(process.cwd(), 'assets/streaks.svg');
     const dir = path.dirname(outPath);
 
     if (!fs.existsSync(dir)) {
