@@ -63,13 +63,13 @@ ctx.textBaseline = 'middle';
 // Helper functions
 // ---------------------------
 
-// BRIGHT, CLEAN, CLASSIC FLAG BACKGROUND
+// BRIGHT, CLEAN FLAG BACKGROUND (no dark overlay)
 function drawTriColorBackground(frameIndex) {
 	const bandHeight = height / 3;
 	const phase = frameIndex * 0.04;
-	const waveAmplitude = 6;       // very subtle
+	const waveAmplitude = 5;       // subtle
 	const waveLength = 220;
-	const xStep = 8;
+	const xStep = 10;
 
 	// Flat tricolor bands
 	ctx.fillStyle = '#FF9933';
@@ -81,12 +81,12 @@ function drawTriColorBackground(frameIndex) {
 	ctx.fillStyle = '#138808';
 	ctx.fillRect(0, bandHeight * 2, width, bandHeight);
 
-	// Very soft light-wave on each band (no darkening)
+	// Very soft WHITE wave on each band (only light, no dark)
 	ctx.save();
 	ctx.globalAlpha = 0.18;
+	ctx.fillStyle = 'rgba(255,255,255,0.9)';
 
-	const drawWave = (yOffset, color, phaseOffset) => {
-		ctx.fillStyle = color;
+	const drawWave = (yOffset, phaseOffset) => {
 		ctx.beginPath();
 		for (let x = 0; x <= width; x += xStep) {
 			const y =
@@ -105,21 +105,17 @@ function drawTriColorBackground(frameIndex) {
 		ctx.fill();
 	};
 
-	// Top band highlight
-	drawWave(bandHeight * 0.2, 'rgba(255,255,255,0.6)', 0);
-	// Middle band highlight
-	drawWave(bandHeight * 1.2, 'rgba(255,255,255,0.3)', Math.PI / 3);
-	// Bottom band highlight
-	drawWave(bandHeight * 2.3, 'rgba(255,255,255,0.35)', Math.PI / 2);
+	// Top / middle / bottom waves
+	drawWave(bandHeight * 0.2, 0);
+	drawWave(bandHeight * 1.2, Math.PI / 3);
+	drawWave(bandHeight * 2.2, Math.PI / 2);
 
 	ctx.restore();
 }
 
-// Keep Chakra, text gradient, typing logic as you last had them
-
 function drawAshokChakra(frameIndex) {
 	const chakraX = width - 240;
-	const chakraY = height / 2;
+ 	const chakraY = height / 2;
 	const chakraRadiusOuter = 70;
 	const chakraRadiusInner = 58;
 	const chakraSpokes = 24;
@@ -163,9 +159,10 @@ function drawAshokChakra(frameIndex) {
 }
 
 function createTextGradient() {
+	// High contrast, stable colors
 	const gradient = ctx.createLinearGradient(paddingLeft, 0, width / 2.2, 0);
 	gradient.addColorStop(0, '#102A43');  // dark blue
-	gradient.addColorStop(1, '#1E90FF');  // dodger blue
+	gradient.addColorStop(1, '#1E90FF');  // bright blue
 	return gradient;
 }
 
@@ -178,12 +175,12 @@ function drawTypingFrame(lineIndex, charIndex, frameIndex) {
 	// Chakra on the right
 	drawAshokChakra(frameIndex);
 
-	// Text styling
+	// Text styling: NO SHADOWS -> no dark halo
 	ctx.fillStyle = createTextGradient();
-	ctx.shadowColor = 'rgba(0,0,0,0.25)';
-	ctx.shadowBlur = 6;
-	ctx.shadowOffsetX = 2;
-	ctx.shadowOffsetY = 2;
+	ctx.shadowColor = 'transparent';
+	ctx.shadowBlur = 0;
+	ctx.shadowOffsetX = 0;
+	ctx.shadowOffsetY = 0;
 
 	for (let j = 0; j <= lineIndex; j++) {
 		const y = paddingTop + j * lineHeight;
@@ -205,8 +202,7 @@ function drawTypingFrame(lineIndex, charIndex, frameIndex) {
 	ctx.globalAlpha = 1;
 }
 
-// FINAL FRAME: flat bright flag, no vignette
-
+// FINAL FRAME: flat bright flag, no shading/vignette, no text shadow
 function drawFinalFrame() {
 	ctx.clearRect(0, 0, width, height);
 
@@ -228,10 +224,10 @@ function drawFinalFrame() {
 	const finalTextGradient = createTextGradient();
 	ctx.fillStyle = finalTextGradient;
 
-	ctx.shadowColor = 'rgba(0,0,0,0.3)';
-	ctx.shadowBlur = 8;
-	ctx.shadowOffsetX = 2;
-	ctx.shadowOffsetY = 2;
+	ctx.shadowColor = 'transparent';
+	ctx.shadowBlur = 0;
+	ctx.shadowOffsetX = 0;
+	ctx.shadowOffsetY = 0;
 
 	for (let j = 0; j < lines.length; j++) {
 		const y = paddingTop + j * lineHeight;
