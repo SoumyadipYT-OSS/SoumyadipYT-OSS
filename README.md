@@ -1,80 +1,85 @@
-<h1 align="center">
-  <p>Soumyadip Majumder</p>
-</h1>
+<h1 align="center">Soumyadip Majumder</h1>
 
 <p align="center">
   <img src="assets/typing.gif" alt="Typing Animation" />
 </p>
 
-A curious mind with a passion for clean code and resonant chords.  
-When he's not sculpting backend logic implementation, you'll find him strumming melodies on his guitar—  
-🎸 one hand on the fretboard, the other dancing across a keyboard.
+<p align="center">
+  A curious mind with a passion for clean code and resonant chords.<br />
+  When he's not sculpting backend logic implementation, you'll find him strumming melodies on his guitar—<br />
+  🎸 one hand on the fretboard, the other dancing across a keyboard.
+</p>
 
-> _"Code like music—structured, expressive, and meant to be played with soul."_
+<p align="center">
+  <em>"Code like music—structured, expressive, and meant to be played with soul."</em>
+</p>
 
 <h3 align="center">A passionate software developer from INDIA 🇮🇳</h3>
 
-<br/>
+<br />
 
 <div align="center">
  
- 🔭 I’m currently working on **Education System and App development**
- 
- 🌱 I’m currently learning **Azure, .NET Core, DSA**
+ 🔭 I’m currently working on <strong>Education System and App development</strong> <br />
+ 🌱 I’m currently learning <strong>Azure, .NET Core, DSA</strong> <br /><br />
+ ⚡ Fun fact: Why programmers use dark theme in IDE? <strong>Because light theme attracts bugs on the screen! 🐛😄</strong>
 
-⚡ Fun fact: Why programmers use dark theme in IDE? **Because light theme attracts bugs on the screen! 🐛😄**
+</div>
 
- </div>
+<hr />
 
-<hr>
+## About Me
 
-<p>
 Hi there! I'm Soumyadip Majumder, a passionate developer and enthusiast about technology. I love exploring various programming languages and tools to build exciting projects.
-</p>
 
+---
 
-| ![SoumyadipYT-OSS's Stats](https://github-readme-stats.vercel.app/api?username=SoumyadipYT-OSS&theme=flag-india&show_icons=true&hide_border=false&count_private=true) | ![SoumyadipYT-OSS's Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=SoumyadipYT-OSS&theme=flag-india&show_icons=true&hide_border=false&layout=compact) | 
-|:--------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------:|
-| [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | <!-- GitHub Streaks goes here --> | 
+## GitHub Overview
+
+| ![SoumyadipYT-OSS's Stats](https://github-readme-stats.vercel.app/api?username=SoumyadipYT-OSS&theme=flag-india&show_icons=true&hide_border=false&count_private=true) | ![SoumyadipYT-OSS's Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=SoumyadipYT-OSS&theme=flag-india&show_icons=true&hide_border=false&layout=compact) |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [![Soumyadip's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=SoumyadipYT-OSS&theme=elegant)](https://github.com/SoumyadipYT-OSS/github-readme-activity-graph) | <!-- GitHub Streaks goes here --> |
 | ✍️ Dev Quote ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=light) | ![Metrics](https://github.com/SoumyadipYT-OSS/SoumyadipYT-OSS/blob/main/github-metrics.svg) |
 
-<hr>
+---
 
+## 🏆 GitHub Trophies
 
-## 🏆GitHub Trophies
 ![](https://github-trophies.vercel.app/?username=SoumyadipYT-OSS&theme=flat&no-frame=false&no-bg=true&margin-w=4)
 
 [![](https://visitcount.itsvg.in/api?id=SoumyadipYT-OSS&icon=0&color=0)](https://visitcount.itsvg.in)
 
-<hr>
-
+---
 
 <details>
-  <summary><h1>Skills</h1></summary>
+  <summary><h2>Skills</h2></summary>
 
-  ### Programming Languages & Frameworks:
+  <br />
+
+  ### Programming Languages & Frameworks
   [![My Skills](https://skillicons.dev/icons?i=dotnet,cs,cpp,c,py,ts)](https://skillicons.dev)
 
-  ### Development Tools & Environments:
+  ### Development Tools & Environments
   [![My Skills](https://skillicons.dev/icons?i=visualstudio,vscode)](https://skillicons.dev)
 
-  ### Version Control & Collaboration:
+  ### Version Control & Collaboration
   [![My Skills](https://skillicons.dev/icons?i=git,github)](https://skillicons.dev)
 
-  ### Cloud Platforms & Hosting:
+  ### Cloud Platforms & Hosting
   [![My Skills](https://skillicons.dev/icons?i=azure)](https://skillicons.dev)
 
-  ### Databases & Storage:
+  ### Databases & Storage
   [![My Skills](https://skillicons.dev/icons?i=sqlite,mysql,mongodb)](https://skillicons.dev)
 
-  ### Frontend Development:
+  ### Frontend Development
   [![My Skills](https://skillicons.dev/icons?i=bootstrap,saas)](https://skillicons.dev)
 
   ### API Testing
   [![My Skills](https://skillicons.dev/icons?i=postman)](https://skillicons.dev)
 
-  ### Other Tools & Technologies:
+  ### Other Tools & Technologies
   [![My Skills](https://skillicons.dev/icons?i=linux)](https://skillicons.dev)
 
 </details>
-<hr>
+
+---
