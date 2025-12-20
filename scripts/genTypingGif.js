@@ -25,7 +25,7 @@ if (!fs.existsSync(outDir)) {
 // Typing lines (content unchanged)
 const lines = [
 	"Hi, I'm Soumyadip Majumder 👨‍💻",
-	'A developer from India 🇮🇳 & Bengali-first educator',
+	'A developer from India 🇮🇳 (Bharat)',
 	'Contributor onboarding starts here'
 ];
 
