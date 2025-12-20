@@ -64,37 +64,84 @@ ctx.textBaseline = 'middle';
 // ---------------------------
 
 function drawTriColorBackground(frameIndex) {
-	// Subtle animated tricolor with diagonal blend instead of harsh bands
-	const phase = frameIndex * 0.03;
+	// Classic horizontal tricolor with gentle flag-like waves
 
-	const gradient = ctx.createLinearGradient(0, 0, width, height);
-	gradient.addColorStop(0.0, '#FF9933');
-	gradient.addColorStop(0.48 + Math.sin(phase) * 0.02, '#FFEFD5');
-	gradient.addColorStop(0.52 + Math.sin(phase + 1) * 0.02, '#F8F8F8');
-	gradient.addColorStop(1.0, '#138808');
+	const phase = frameIndex * 0.05;
+	const bandHeight = height / 3;
 
-	ctx.fillStyle = gradient;
-	ctx.fillRect(0, 0, width, height);
+	// Solid base tricolor bands
+	ctx.fillStyle = '#FF9933';
+	ctx.fillRect(0, 0, width, bandHeight);
 
-	// Very soft cloth-like wave overlay using alpha
-	const waveAmplitude = 18;
-	const waveFrequency = 0.02;
-	const stripeHeight = 6;
+	ctx.fillStyle = '#FFFFFF';
+	ctx.fillRect(0, bandHeight, width, bandHeight);
+
+	ctx.fillStyle = '#138808';
+	ctx.fillRect(0, bandHeight * 2, width, bandHeight);
+
+	// Wavy overlay to simulate fabric motion
+	const waveAmplitude = 10;
+	const waveLength = 140;
+	const horizontalStep = 8;
 
 	ctx.save();
-	ctx.globalAlpha = 0.12;
-	ctx.fillStyle = '#FFFFFF';
+	ctx.globalAlpha = 0.15;
 
-	for (let y = 0; y < height; y += stripeHeight) {
-		const offset = Math.sin(waveFrequency * y + phase) * waveAmplitude;
-		ctx.beginPath();
-		ctx.moveTo(offset, y);
-		ctx.lineTo(width + offset, y + stripeHeight / 2);
-		ctx.lineTo(width + offset, y + stripeHeight);
-		ctx.lineTo(offset, y + stripeHeight / 2);
-		ctx.closePath();
-		ctx.fill();
+	// Top band wave highlight
+	ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+	ctx.beginPath();
+	for (let x = 0; x <= width; x += horizontalStep) {
+		const y =
+			bandHeight * 0.4 +
+			Math.sin((x / waveLength) * 2 * Math.PI + phase) * waveAmplitude;
+		if (x === 0) {
+			ctx.moveTo(x, y);
+		} else {
+			ctx.lineTo(x, y);
+		}
 	}
+	ctx.lineTo(width, 0);
+	ctx.lineTo(0, 0);
+	ctx.closePath();
+	ctx.fill();
+
+	// Middle band subtle shading
+	ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+	ctx.beginPath();
+	for (let x = 0; x <= width; x += horizontalStep) {
+		const y =
+			bandHeight * 1.5 +
+			Math.sin((x / waveLength) * 2 * Math.PI + phase + Math.PI / 3) *
+				(waveAmplitude * 0.8);
+		if (x === 0) {
+			ctx.moveTo(x, y);
+		} else {
+			ctx.lineTo(x, y);
+		}
+	}
+	ctx.lineTo(width, bandHeight);
+	ctx.lineTo(0, bandHeight);
+	ctx.closePath();
+	ctx.fill();
+
+	// Bottom band wave highlight
+	ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+	ctx.beginPath();
+	for (let x = 0; x <= width; x += horizontalStep) {
+		const y =
+			bandHeight * 2.6 +
+			Math.sin((x / waveLength) * 2 * Math.PI + phase + Math.PI / 2) *
+				(waveAmplitude * 1.1);
+		if (x === 0) {
+			ctx.moveTo(x, y);
+		} else {
+			ctx.lineTo(x, y);
+		}
+	}
+	ctx.lineTo(width, height);
+	ctx.lineTo(0, height);
+	ctx.closePath();
+	ctx.fill();
 
 	ctx.restore();
 }
@@ -212,15 +259,19 @@ function drawTypingFrame(lineIndex, charIndex, frameIndex) {
 function drawFinalFrame() {
 	ctx.clearRect(0, 0, width, height);
 
-	// Strong but clean tricolor base
-	const finalBg = ctx.createLinearGradient(0, 0, width, height);
-	finalBg.addColorStop(0, '#FF9933');
-	finalBg.addColorStop(0.5, '#FFFFFF');
-	finalBg.addColorStop(1, '#138808');
-	ctx.fillStyle = finalBg;
-	ctx.fillRect(0, 0, width, height);
+	// Classic horizontal tricolor (static, a bit softer)
+	const bandHeight = height / 3;
 
-	// Soft golden radial burst from center-left
+	ctx.fillStyle = '#FF9933';
+	ctx.fillRect(0, 0, width, bandHeight);
+
+	ctx.fillStyle = '#FFFFFF';
+	ctx.fillRect(0, bandHeight, width, bandHeight);
+
+	ctx.fillStyle = '#138808';
+	ctx.fillRect(0, bandHeight * 2, width, bandHeight);
+
+	// Very soft overall glow
 	const burstGradient = ctx.createRadialGradient(
 		width * 0.25,
 		height / 2,
@@ -229,7 +280,7 @@ function drawFinalFrame() {
 		height / 2,
 		width * 0.8
 	);
-	burstGradient.addColorStop(0, 'rgba(255, 215, 0, 0.9)');
+	burstGradient.addColorStop(0, 'rgba(255, 215, 0, 0.45)');
 	burstGradient.addColorStop(1, 'rgba(255, 215, 0, 0)');
 	ctx.fillStyle = burstGradient;
 	ctx.fillRect(0, 0, width, height);
