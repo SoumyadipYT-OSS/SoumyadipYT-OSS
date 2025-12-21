@@ -22,14 +22,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Optional: you can keep the manual cache if you want, it's independent of setup-node
       - name: Cache node modules
         uses: actions/cache@v3
         with:
           path: |
             ~/.npm
             node_modules
-          # Include both scripts in the cache key
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('scripts/genTypingGif.js', 'genNameTypeGif.js') }}
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('scripts/genTypingGif.js') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
@@ -37,15 +37,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '16'
+          # cache: 'npm'  # REMOVE this line if you have no package-lock.json
 
       - name: Install dependencies
         run: npm install canvas gifencoder
 
-      - name: Generate typing.gif (old header)
+      - name: Generate typing.gif
         run: node scripts/genTypingGif.js
-
-      - name: Generate NameTyping.gif (new header)
-        run: node genNameTypeGif.js
 
       - name: Configure git user
         run: |
@@ -54,8 +52,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add assets/typing.gif assets/NameTyping.gif
-          git commit -m "chore: update typing animations" || echo "No changes to commit"
+          git add assets/typing.gif
+          git commit -m "chore: update typing animation" || echo "No changes to commit"
 
       - name: Pull latest main with rebase
         run: |
