@@ -1,4 +1,4 @@
-name: Generate Typing GIF
+name: Generate Name Typing GIF
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: typing-gif-${{ github.ref }}
+  group: name-typing-gif-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           path: |
             ~/.npm
             node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('genNameTypeGif.js') }}
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('scripts/genNameTypeGif.js') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
@@ -41,7 +41,7 @@ jobs:
         run: npm install canvas gifencoder
 
       - name: Generate NameTyping.gif
-        run: node genNameTypeGif.js
+        run: node scripts/genNameTypeGif.js
 
       - name: Configure git user
         run: |
