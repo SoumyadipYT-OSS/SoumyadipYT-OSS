@@ -17,7 +17,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # needed for pull/rebase
 
       - name: Cache node modules
         uses: actions/cache@v3
@@ -30,9 +33,10 @@ jobs:
             ${{ runner.os }}-node-modules-
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install canvas gifencoder
@@ -40,10 +44,20 @@ jobs:
       - name: Generate typing.gif
         run: node scripts/genTypingGif.js
 
-      - name: Commit & push GIF
+      - name: Configure git user
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
+
+      - name: Commit changes
+        run: |
           git add assets/typing.gif
           git commit -m "chore: update typing animation" || echo "No changes to commit"
-          git push
+
+      - name: Pull latest main with rebase
+        run: |
+          git pull --rebase origin main || echo "Nothing to rebase"
+
+      - name: Push changes
+        run: |
+          git push origin main
