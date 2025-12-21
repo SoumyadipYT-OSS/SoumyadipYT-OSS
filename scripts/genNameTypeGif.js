@@ -20,13 +20,13 @@ if (!fs.existsSync(outDir)) {
 
 // Single-line name for the header GIF
 const line = 'Soumyadip Majumder';
-const cursorChar = '▌'; // slimmer block cursor for header look
+const cursorChar = '▌'; // typewriter-style cursor
 
 const width = 900;
 const height = 220;
 const fontSize = 72;
 
-// Layout (we'll center text)
+// Layout (we'll center horizontally and vertically)
 const paddingHorizontal = 40;
 
 // Timing
@@ -49,8 +49,8 @@ encoder.setQuality(10);
 ctx.font = `${fontSize}px ${fontFamily}`;
 ctx.textBaseline = 'middle';
 
-// Measure text for centering
-const textWidth = ctx.measureText(line).width;
+// Measure full text once for centering
+const fullTextWidth = ctx.measureText(line).width;
 const centerX = width / 2;
 const centerY = height / 2;
 
@@ -58,48 +58,47 @@ const centerY = height / 2;
 // Drawing helpers
 // ---------------------------
 
-// Soft gradient fill for the name
-function createTextGradient() {
-	const gradient = ctx.createLinearGradient(centerX - textWidth / 2, 0, centerX + textWidth / 2, 0);
-	gradient.addColorStop(0, '#1a202c');  // dark slate
-	gradient.addColorStop(0.5, '#2b6cb0'); // blue-600
-	gradient.addColorStop(1, '#63b3ed');   // blue-300
+// Gradient moves slightly over time (gradient fill animation)
+function createAnimatedGradient(frameIndex) {
+	const shift = Math.sin(frameIndex * 0.05) * 60; // small horizontal shift
+	const startX = centerX - fullTextWidth / 2 - shift;
+	const endX = centerX + fullTextWidth / 2 + shift;
+
+	const gradient = ctx.createLinearGradient(startX, 0, endX, 0);
+	gradient.addColorStop(0.0, '#4c51bf'); // indigo-600
+	gradient.addColorStop(0.4, '#667eea'); // indigo-400
+	gradient.addColorStop(0.7, '#63b3ed'); // blue-300
+	gradient.addColorStop(1.0, '#edf2f7'); // gray-100
 	return gradient;
 }
 
-// Optional subtle glow behind text
-function drawTextGlow(alpha) {
-	ctx.save();
-	ctx.globalAlpha = alpha * 0.4;
-	ctx.fillStyle = '#1a202c';
-	ctx.beginPath();
-	ctx.ellipse(centerX, centerY, textWidth / 2 + 30, fontSize, 0, 0, 2 * Math.PI);
-	ctx.fill();
-	ctx.restore();
+function clearTransparent() {
+	// Fully transparent background
+	ctx.clearRect(0, 0, width, height);
 }
 
 function drawTypingFrame(charIndex, frameIndex) {
-	ctx.clearRect(0, 0, width, height);
+	clearTransparent();
 
 	const showCursor = frameIndex % cursorBlinkPeriod < cursorBlinkPeriod / 2;
+
+	// Typewriter substring
+	const visibleCore = line.substring(0, charIndex);
 	const visibleText =
-		line.substring(0, charIndex) +
-		(showCursor && charIndex <= line.length ? cursorChar : '');
+		visibleCore + (showCursor && charIndex <= line.length ? cursorChar : '');
 
-	// Fade-in based on progress of typing
+	// Fade-in per character
 	const progress = Math.min(1, charIndex / line.length);
-	const alpha = 0.3 + progress * 0.7; // from 0.3 to 1.0
+	const alpha = 0.4 + progress * 0.6; // from 0.4 to 1.0
 
-	// Glow
-	drawTextGlow(alpha);
+	// Animated gradient fill
+	ctx.fillStyle = createAnimatedGradient(frameIndex);
 
-	// Text
-	ctx.fillStyle = createTextGradient();
 	ctx.globalAlpha = alpha;
-	ctx.shadowColor = 'rgba(0,0,0,0.15)';
-	ctx.shadowBlur = 4;
-	ctx.shadowOffsetX = 1;
-	ctx.shadowOffsetY = 2;
+	ctx.shadowColor = 'transparent';
+	ctx.shadowBlur = 0;
+	ctx.shadowOffsetX = 0;
+	ctx.shadowOffsetY = 0;
 
 	const currentWidth = ctx.measureText(visibleText).width;
 	const x = centerX - currentWidth / 2;
@@ -107,42 +106,27 @@ function drawTypingFrame(charIndex, frameIndex) {
 
 	ctx.fillText(visibleText, x, y);
 
-	// Reset for next frame
+	ctx.globalAlpha = 1;
+}
+
+function drawFinalFrame(frameIndex) {
+	clearTransparent();
+
+	// Full text, animated gradient still moving
+	ctx.fillStyle = createAnimatedGradient(frameIndex);
+
 	ctx.globalAlpha = 1;
 	ctx.shadowColor = 'transparent';
 	ctx.shadowBlur = 0;
 	ctx.shadowOffsetX = 0;
 	ctx.shadowOffsetY = 0;
-}
 
-function drawFinalFrame() {
-	ctx.clearRect(0, 0, width, height);
-
-	const alpha = 1;
-
-	// Final glow
-	drawTextGlow(alpha);
-
-	// Final text (full)
-	ctx.fillStyle = createTextGradient();
-	ctx.globalAlpha = alpha;
-	ctx.shadowColor = 'rgba(0,0,0,0.2)';
-	ctx.shadowBlur = 6;
-	ctx.shadowOffsetX = 2;
-	ctx.shadowOffsetY = 3;
-
-	const finalTextWidth = ctx.measureText(line).width;
-	const x = centerX - finalTextWidth / 2;
+	const x = centerX - fullTextWidth / 2;
 	const y = centerY;
 
 	ctx.fillText(line, x, y);
 
-	// Reset
 	ctx.globalAlpha = 1;
-	ctx.shadowColor = 'transparent';
-	ctx.shadowBlur = 0;
-	ctx.shadowOffsetX = 0;
-	ctx.shadowOffsetY = 0;
 }
 
 // ---------------------------
@@ -151,7 +135,7 @@ function drawFinalFrame() {
 
 let frameCounter = 0;
 
-// Typing animation
+// Typing animation (typewriter effect)
 for (let i = 1; i <= line.length; i++) {
 	drawTypingFrame(i, frameCounter);
 	encoder.addFrame(ctx);
@@ -165,10 +149,11 @@ for (let hold = 0; hold < 10; hold++) {
 	frameCounter++;
 }
 
-// Final static hero frames without cursor
+// Final static hero frames, no cursor, gradient still animates slightly
 for (let k = 0; k < 20; k++) {
-	drawFinalFrame();
+	drawFinalFrame(frameCounter);
 	encoder.addFrame(ctx);
+	frameCounter++;
 }
 
 encoder.finish();
