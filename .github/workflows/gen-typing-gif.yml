@@ -20,8 +20,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # needed for pull/rebase
+          fetch-depth: 0
 
+      # Optional: you can keep the manual cache if you want, it's independent of setup-node
       - name: Cache node modules
         uses: actions/cache@v3
         with:
@@ -36,7 +37,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '16'
-          cache: 'npm'
+          # cache: 'npm'  # REMOVE this line if you have no package-lock.json
 
       - name: Install dependencies
         run: npm install canvas gifencoder
