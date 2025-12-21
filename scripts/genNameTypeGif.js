@@ -20,15 +20,14 @@ if (!fs.existsSync(outDir)) {
 
 // Single-line name for the header GIF
 const line = 'Soumyadip Majumder';
-const cursorChar = '⚛';
+const cursorChar = '▌'; // slimmer block cursor for header look
 
-const width = 900;      // good aspect for GitHub header
+const width = 900;
 const height = 220;
-const fontSize = 64;
+const fontSize = 72;
 
-// Layout
-const paddingLeft = 60;
-const baselineY = height / 2 + 8;
+// Layout (we'll center text)
+const paddingHorizontal = 40;
 
 // Timing
 const typingDelayMs = 70;
@@ -50,158 +49,100 @@ encoder.setQuality(10);
 ctx.font = `${fontSize}px ${fontFamily}`;
 ctx.textBaseline = 'middle';
 
+// Measure text for centering
+const textWidth = ctx.measureText(line).width;
+const centerX = width / 2;
+const centerY = height / 2;
+
 // ---------------------------
 // Drawing helpers
 // ---------------------------
 
-// Bright, classic horizontal tricolor with very subtle white wave
-function drawTriColorBackground(frameIndex) {
-	const bandHeight = height / 3;
-	const phase = frameIndex * 0.04;
-	const waveAmplitude = 5;
-	const waveLength = 260;
-	const xStep = 12;
-
-	// Base flat bands
-	ctx.fillStyle = '#FF9933';
-	ctx.fillRect(0, 0, width, bandHeight);
-
-	ctx.fillStyle = '#FFFFFF';
-	ctx.fillRect(0, bandHeight, width, bandHeight);
-
-	ctx.fillStyle = '#138808';
-	ctx.fillRect(0, bandHeight * 2, width, bandHeight);
-
-	// Light-only cloth wave
-	ctx.save();
-	ctx.globalAlpha = 0.18;
-	ctx.fillStyle = 'rgba(255,255,255,0.95)';
-
-	const drawWave = (yOffset, phaseOffset) => {
-		ctx.beginPath();
-		for (let x = 0; x <= width; x += xStep) {
-			const y =
-				yOffset +
-				Math.sin((x / waveLength) * 2 * Math.PI + phase + phaseOffset) *
-					waveAmplitude;
-			if (x === 0) {
-				ctx.moveTo(x, y);
-			} else {
-				ctx.lineTo(x, y);
-			}
-		}
-		ctx.lineTo(width, yOffset + bandHeight);
-		ctx.lineTo(0, yOffset + bandHeight);
-		ctx.closePath();
-		ctx.fill();
-	};
-
-	drawWave(bandHeight * 0.2, 0);
-	drawWave(bandHeight * 1.2, Math.PI / 3);
-	drawWave(bandHeight * 2.2, Math.PI / 2);
-
-	ctx.restore();
-}
-
-// Simple, clean Ashoka Chakra on the right
-function drawAshokChakra(frameIndex) {
-	const chakraX = width - 140;
-	const chakraY = height / 2;
-	const chakraRadiusOuter = 50;
-	const chakraRadiusInner = 40;
-	const chakraSpokes = 24;
-	const chakraAngle = frameIndex * 0.035;
-
-	ctx.save();
-	ctx.translate(chakraX, chakraY);
-	ctx.rotate(chakraAngle);
-
-	// Outer circle
-	ctx.beginPath();
-	ctx.lineWidth = 3;
-	ctx.strokeStyle = '#000080';
-	ctx.arc(0, 0, chakraRadiusOuter, 0, 2 * Math.PI);
-	ctx.stroke();
-
-	// Inner circle
-	ctx.beginPath();
-	ctx.lineWidth = 2;
-	ctx.arc(0, 0, chakraRadiusInner, 0, 2 * Math.PI);
-	ctx.stroke();
-
-	// Spokes
-	ctx.lineWidth = 2;
-	for (let s = 0; s < chakraSpokes; s++) {
-		const angle = (2 * Math.PI * s) / chakraSpokes;
-		const inner = chakraRadiusInner * 0.1;
-		ctx.beginPath();
-		ctx.moveTo(inner * Math.cos(angle), inner * Math.sin(angle));
-		ctx.lineTo(chakraRadiusInner * Math.cos(angle), chakraRadiusInner * Math.sin(angle));
-		ctx.stroke();
-	}
-
-	// Center hub
-	ctx.beginPath();
-	ctx.fillStyle = '#000080';
-	ctx.arc(0, 0, 5, 0, 2 * Math.PI);
-	ctx.fill();
-
-	ctx.restore();
-}
-
-// Stable, high-contrast text gradient
+// Soft gradient fill for the name
 function createTextGradient() {
-	const gradient = ctx.createLinearGradient(paddingLeft, 0, width / 2, 0);
-	gradient.addColorStop(0, '#102A43');
-	gradient.addColorStop(1, '#1E90FF');
+	const gradient = ctx.createLinearGradient(centerX - textWidth / 2, 0, centerX + textWidth / 2, 0);
+	gradient.addColorStop(0, '#1a202c');  // dark slate
+	gradient.addColorStop(0.5, '#2b6cb0'); // blue-600
+	gradient.addColorStop(1, '#63b3ed');   // blue-300
 	return gradient;
+}
+
+// Optional subtle glow behind text
+function drawTextGlow(alpha) {
+	ctx.save();
+	ctx.globalAlpha = alpha * 0.4;
+	ctx.fillStyle = '#1a202c';
+	ctx.beginPath();
+	ctx.ellipse(centerX, centerY, textWidth / 2 + 30, fontSize, 0, 0, 2 * Math.PI);
+	ctx.fill();
+	ctx.restore();
 }
 
 function drawTypingFrame(charIndex, frameIndex) {
 	ctx.clearRect(0, 0, width, height);
-
-	// Background and Chakra
-	drawTriColorBackground(frameIndex);
-	drawAshokChakra(frameIndex);
-
-	// Text (no shadow to avoid dark halo)
-	ctx.fillStyle = createTextGradient();
-	ctx.shadowColor = 'transparent';
-	ctx.shadowBlur = 0;
-	ctx.shadowOffsetX = 0;
-	ctx.shadowOffsetY = 0;
 
 	const showCursor = frameIndex % cursorBlinkPeriod < cursorBlinkPeriod / 2;
 	const visibleText =
 		line.substring(0, charIndex) +
 		(showCursor && charIndex <= line.length ? cursorChar : '');
 
-	ctx.fillText(visibleText, paddingLeft, baselineY);
+	// Fade-in based on progress of typing
+	const progress = Math.min(1, charIndex / line.length);
+	const alpha = 0.3 + progress * 0.7; // from 0.3 to 1.0
+
+	// Glow
+	drawTextGlow(alpha);
+
+	// Text
+	ctx.fillStyle = createTextGradient();
+	ctx.globalAlpha = alpha;
+	ctx.shadowColor = 'rgba(0,0,0,0.15)';
+	ctx.shadowBlur = 4;
+	ctx.shadowOffsetX = 1;
+	ctx.shadowOffsetY = 2;
+
+	const currentWidth = ctx.measureText(visibleText).width;
+	const x = centerX - currentWidth / 2;
+	const y = centerY;
+
+	ctx.fillText(visibleText, x, y);
+
+	// Reset for next frame
+	ctx.globalAlpha = 1;
+	ctx.shadowColor = 'transparent';
+	ctx.shadowBlur = 0;
+	ctx.shadowOffsetX = 0;
+	ctx.shadowOffsetY = 0;
 }
 
 function drawFinalFrame() {
 	ctx.clearRect(0, 0, width, height);
 
-	const bandHeight = height / 3;
+	const alpha = 1;
 
-	ctx.fillStyle = '#FF9933';
-	ctx.fillRect(0, 0, width, bandHeight);
+	// Final glow
+	drawTextGlow(alpha);
 
-	ctx.fillStyle = '#FFFFFF';
-	ctx.fillRect(0, bandHeight, width, bandHeight);
-
-	ctx.fillStyle = '#138808';
-	ctx.fillRect(0, bandHeight * 2, width, bandHeight);
-
-	drawAshokChakra(0);
-
+	// Final text (full)
 	ctx.fillStyle = createTextGradient();
+	ctx.globalAlpha = alpha;
+	ctx.shadowColor = 'rgba(0,0,0,0.2)';
+	ctx.shadowBlur = 6;
+	ctx.shadowOffsetX = 2;
+	ctx.shadowOffsetY = 3;
+
+	const finalTextWidth = ctx.measureText(line).width;
+	const x = centerX - finalTextWidth / 2;
+	const y = centerY;
+
+	ctx.fillText(line, x, y);
+
+	// Reset
+	ctx.globalAlpha = 1;
 	ctx.shadowColor = 'transparent';
 	ctx.shadowBlur = 0;
 	ctx.shadowOffsetX = 0;
 	ctx.shadowOffsetY = 0;
-
-	ctx.fillText(line, paddingLeft, baselineY);
 }
 
 // ---------------------------
@@ -217,14 +158,14 @@ for (let i = 1; i <= line.length; i++) {
 	frameCounter++;
 }
 
-// Hold full name for a bit
+// Hold full name with blinking cursor for a bit
 for (let hold = 0; hold < 10; hold++) {
 	drawTypingFrame(line.length, frameCounter);
 	encoder.addFrame(ctx);
 	frameCounter++;
 }
 
-// Final static hero frames
+// Final static hero frames without cursor
 for (let k = 0; k < 20; k++) {
 	drawFinalFrame();
 	encoder.addFrame(ctx);
