@@ -1,4 +1,6 @@
-<h1 align="center">Soumyadip Majumder</h1>
+<h1 align="center">
+  <img src="assets/NameTyping.gif" alt="Soumyadip Majumder" />
+</h1>
 
 <p align="center">
   <img src="assets/typing.gif" alt="Typing Animation" />
