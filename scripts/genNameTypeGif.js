@@ -18,9 +18,8 @@ if (!fs.existsSync(outDir)) {
 	fs.mkdirSync(outDir, { recursive: true });
 }
 
-// Single-line name for the header GIF
 const line = 'Soumyadip Majumder';
-const cursorChar = '▌'; // typewriter-style cursor
+const cursorChar = '▌';
 
 const width = 900;
 const height = 220;
@@ -42,60 +41,50 @@ encoder.setRepeat(0);
 encoder.setDelay(encoderDelayMs);
 encoder.setQuality(10);
 
-// Transparent background
+// Fully transparent background
 encoder.setTransparent(0x000000);
 
-// Base font
 ctx.font = `${fontSize}px ${fontFamily}`;
 ctx.textBaseline = 'middle';
 
-// Measure full text once for centering
 const fullTextWidth = ctx.measureText(line).width;
 const centerX = width / 2;
 const centerY = height / 2;
 
-// ---------------------------
-// Gradient palettes
-// ---------------------------
+// --------------------------------------
+// Color palettes: choose ONE
+// --------------------------------------
+// 'neon'     -> vibrant cyan/magenta
+// 'sunrise'  -> orange/pink/purple
+// 'aqua'     -> teal/cyan/green
+const palette = 'neon';
 
-// Choose ONE palette here
-const palette = 'blue'; // 'blue' | 'sunset' | 'mint' | 'ember'
-
-// Animated gradient for text fill only (no background)
+// Animated gradient for text only
 function createAnimatedGradient(frameIndex) {
 	const shift = Math.sin(frameIndex * 0.05) * 60;
 	const startX = centerX - fullTextWidth / 2 - shift;
 	const endX = centerX + fullTextWidth / 2 + shift;
 
-	const gradient = ctx.createLinearGradient(startX, 0, endX, 0);
+	const g = ctx.createLinearGradient(startX, 0, endX, 0);
 
-	if (palette === 'blue') {
-		// Indigo / blue
-		gradient.addColorStop(0.0, '#4c51bf'); // indigo-600
-		gradient.addColorStop(0.4, '#667eea'); // indigo-400
-		gradient.addColorStop(0.7, '#63b3ed'); // blue-300
-		gradient.addColorStop(1.0, '#edf2f7'); // gray-100
-	} else if (palette === 'sunset') {
-		// Orange / pink / purple
-		gradient.addColorStop(0.0, '#ed8936'); // orange-400
-		gradient.addColorStop(0.4, '#f56565'); // red-400
-		gradient.addColorStop(0.7, '#ed64a6'); // pink-400
-		gradient.addColorStop(1.0, '#805ad5'); // purple-500
-	} else if (palette === 'mint') {
-		// Teal / cyan
-		gradient.addColorStop(0.0, '#0d9488'); // teal-600
-		gradient.addColorStop(0.4, '#14b8a6'); // teal-500
-		gradient.addColorStop(0.7, '#22c55e'); // green-500
-		gradient.addColorStop(1.0, '#bbf7d0'); // green-100
-	} else if (palette === 'ember') {
-		// Dark ember / amber
-		gradient.addColorStop(0.0, '#f97316'); // orange-500
-		gradient.addColorStop(0.4, '#ea580c'); // orange-600
-		gradient.addColorStop(0.7, '#b45309'); // amber-700
-		gradient.addColorStop(1.0, '#fed7aa'); // orange-100
+	if (palette === 'neon') {
+		g.addColorStop(0.0, '#00e5ff'); // cyan
+		g.addColorStop(0.4, '#7c3aed'); // violet
+		g.addColorStop(0.7, '#ec4899'); // magenta
+		g.addColorStop(1.0, '#f9fafb'); // almost white
+	} else if (palette === 'sunrise') {
+		g.addColorStop(0.0, '#f97316'); // orange
+		g.addColorStop(0.4, '#fb7185'); // rose
+		g.addColorStop(0.7, '#a855f7'); // purple
+		g.addColorStop(1.0, '#fee2e2'); // soft light
+	} else if (palette === 'aqua') {
+		g.addColorStop(0.0, '#0ea5e9'); // sky
+		g.addColorStop(0.4, '#22c55e'); // green
+		g.addColorStop(0.7, '#2dd4bf'); // teal
+		g.addColorStop(1.0, '#e0f2fe'); // light blue
 	}
 
-	return gradient;
+	return g;
 }
 
 function clearTransparent() {
